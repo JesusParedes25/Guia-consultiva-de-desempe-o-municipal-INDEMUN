@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indicadores Gestión</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3"></script>
+
+    <style>
+      .hidden {
+        display: none;
+      }
+      /* Estilo del modal (fondo negro con un poco de opacidad) */
+.modal {
+  display: none; /* Ocultar por defecto */
+  position: fixed; /* Quedarse en su sitio */
+  z-index: 1; /* Situarse encima de todo */
+  padding-top: 100px; /* Ubicar 100px desde la parte superior */
+  left: 0;
+  top: 0;
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Altura completa */
+  overflow: auto; /* Habilitar scroll si es necesario */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(255, 255, 255, 0.5); /* Color negro con opacidad */
+}
+
+/* Estilo del contenedor modal */
+.modal-content {
+  position: relative;
+  
+  margin: auto;
+  padding: 0;
+  width: 80%;
+  max-width: 500px; /* Establecer un ancho máximo para el modal */
+}
+
+/* Estilo del botón de cierre del modal */
+.close {
+  color: black;
+  float: right;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+    </style>
+
+</head>
+<body>
+
+            <!-- Los nombres de los municipios se muestran aquí -->
+            <select id="municipios">
+                <!-- Los nombres de los municipios se agregarán dinámicamente aquí -->
+            </select><br>
+            
+              <div id="myModal" class="modal">
+                <!-- Contenido del modal -->
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <canvas id="myChart"></canvas>
+                </div>
+              </div>
+              
+
+
+<script>
+   var data = [
+  {
+    "Municipio": "Acatlán",
+    "v": 3,
+    "a": 2,
+    "r": 7,
+    "ndR": 6,
+    "nd": 17,
+    "nm": 0
+  },
+  {
+    "Municipio": "Acaxochitlán",
+    "v": 14,
+    "a": 10,
+    "r": 11,
+    "ndR": 0,
+    "nd": 0,
+    "nm": 0
+  },
+  {
+    "Municipio": "Actopan",
+    "v": 14,
+    "a": 6,
+    "r": 11,
+    "ndR": 0,
+    "nd": 1,
+    "nm": 3
+  },
+  {
+    "Municipio": "Agua Blanca de Iturbide",
+    "v": 10,
+    "a": 3,
+    "r": 3,
+    "ndR": 6,
+    "nd": 12,
+    "nm": 1
+  },
+  {
+    "Municipio": "Ajacuba",
+    "v": 5,
+    "a": 3,
+    "r": 9,
+    "ndR": 6,
+    "nd": 11,
+    "nm": 1
+  },
+  {
+    "Municipio": "Alfajayucan",
+    "v": 4,
+    "a": 0,
+    "r": 12,
+    "ndR": 1,
+    "nd": 17,
+    "nm": 1
+  },
+  {
+    "Municipio": "Almoloya",
+    "v": 24,
+    "a": 4,
+    "r": 6,
+    "ndR": 0,
+    "nd": 1,
+    "nm": 0
+  },
+  {
+    "Municipio": "Apan",
+    "v": 17,
+    "a": 1,
+    "r": 5,
+    "ndR": 0,
+    "nd": 7,
+    "nm": 5
+  },
+  {
+    "Municipio": "Atitalaquia",
+    "v": 9,
+    "a": 2,
+    "r": 5,
+    "ndR": 4,
+    "nd": 14,
+    "nm": 1
+  },
+  {
+    "Municipio": "Atlapexco",
+    "v": 10,
+    "a": 1,
+    "r": 7,
+    "ndR": 2,
+    "nd": 14,
+    "nm": 1
+  },
+  {
+    "Municipio": "Atotonilco de Tula",
+    "v": 6,
+    "a": 3,
+    "r": 6,
+    "ndR": 6,
+    "nd": 13,
+    "nm": 1
+  },
+  {
+    "Municipio": "Atotonilco el Grande",
+    "v": 19,
+    "a": 2,
+    "r": 7,
+    "ndR": 0,
+    "nd": 4,
+    "nm": 3
+  },
+  {
+    "Municipio": "Calnali",
+    "v": 12,
+    "a": 4,
+    "r": 2,
+    "ndR": 6,
+    "nd": 10,
+    "nm": 1
+  },
+  {
+    "Municipio": "Cardonal",
+    "v": 12,
+    "a": 0,
+    "r": 5,
+    "ndR": 2,
+    "nd": 10,
+    "nm": 6
+  },
+  {
+    "Municipio": "Chapantongo",
+    "v": 3,
+    "a": 3,
+    "r": 12,
+    "ndR": 1,
+    "nd": 10,
+    "nm": 6
+  },
+  {
+    "Municipio": "Chapulhuacán",
+    "v": 11,
+    "a": 10,
+    "r": 13,
+    "ndR": 1,
+    "nd": 0,
+    "nm": 0
+  },
+  {
+    "Municipio": "Chilcuautla",
+    "v": 2,
+    "a": 1,
+    "r": 7,
+    "ndR": 8,
+    "nd": 17,
+    "nm": 0
+  },
+  {
+    "Municipio": "Cuautepec de Hinojosa",
+    "v": 12,
+    "a": 6,
+    "r": 5,
+    "ndR": 4,
+    "nd": 8,
+    "nm": 0
+  },
+  {
+    "Municipio": "El Arenal",
+    "v": 2,
+    "a": 0,
+    "r": 8,
+    "ndR": 8,
+    "nd": 13,
+    "nm": 4
+  },
+  {
+    "Municipio": "Eloxochitlán",
+    "v": 1,
+    "a": 0,
+    "r": 10,
+    "ndR": 5,
+    "nd": 17,
+    "nm": 2
+  },
+  {
+    "Municipio": "Emiliano Zapata",
+    "v": 15,
+    "a": 6,
+    "r": 11,
+    "ndR": 0,
+    "nd": 0,
+    "nm": 3
+  },
+  {
+    "Municipio": "Epazoyucan",
+    "v": 20,
+    "a": 5,
+    "r": 6,
+    "ndR": 0,
+    "nd": 0,
+    "nm": 4
+  },
+  {
+    "Municipio": "Francisco I. Madero",
+    "v": 19,
+    "a": 3,
+    "r": 4,
+    "ndR": 1,
+    "nd": 6,
+    "nm": 2
+  },
+  {
+    "Municipio": "Huasca de Ocampo",
+    "v": 7,
+    "a": 3,
+    "r": 8,
+    "ndR": 5,
+    "nd": 10,
+    "nm": 2
+  },
+  {
+    "Municipio": "Huautla",
+    "v": 18,
+    "a": 3,
+    "r": 4,
+    "ndR": 0,
+    "nd": 9,
+    "nm": 1
+  },
+  {
+    "Municipio": "Huazalingo",
+    "v": 16,
+    "a": 2,
+    "r": 4,
+    "ndR": 5,
+    "nd": 5,
+    "nm": 3
+  },
+  {
+    "Municipio": "Huehuetla",
+    "v": 22,
+    "a": 0,
+    "r": 3,
+    "ndR": 2,
+    "nd": 5,
+    "nm": 3
+  },
+  {
+    "Municipio": "Huejutla de Reyes",
+    "v": 19,
+    "a": 4,
+    "r": 3,
+    "ndR": 0,
+    "nd": 8,
+    "nm": 1
+  },
+  {
+    "Municipio": "Huichapan",
+    "v": 18,
+    "a": 6,
+    "r": 6,
+    "ndR": 0,
+    "nd": 4,
+    "nm": 1
+  },
+  {
+    "Municipio": "Ixmiquilpan",
+    "v": 9,
+    "a": 2,
+    "r": 5,
+    "ndR": 2,
+    "nd": 8,
+    "nm": 9
+  },
+  {
+    "Municipio": "Jacala de Ledezma",
+    "v": 6,
+    "a": 4,
+    "r": 7,
+    "ndR": 2,
+    "nd": 15,
+    "nm": 1
+  },
+  {
+    "Municipio": "Jaltocán",
+    "v": 14,
+    "a": 4,
+    "r": 8,
+    "ndR": 1,
+    "nd": 8,
+    "nm": 0
+  },
+  {
+    "Municipio": "Juárez Hidalgo",
+    "v": 24,
+    "a": 6,
+    "r": 3,
+    "ndR": 0,
+    "nd": 2,
+    "nm": 0
+  },
+  {
+    "Municipio": "La Misión",
+    "v": 9,
+    "a": 5,
+    "r": 6,
+    "ndR": 2,
+    "nd": 6,
+    "nm": 7
+  },
+  {
+    "Municipio": "Lolotla",
+    "v": 6,
+    "a": 6,
+    "r": 8,
+    "ndR": 8,
+    "nd": 4,
+    "nm": 3
+  },
+  {
+    "Municipio": "Metepec",
+    "v": 9,
+    "a": 3,
+    "r": 9,
+    "ndR": 1,
+    "nd": 13,
+    "nm": 0
+  },
+  {
+    "Municipio": "Metztitlán",
+    "v": 15,
+    "a": 2,
+    "r": 5,
+    "ndR": 3,
+    "nd": 8,
+    "nm": 2
+  },
+  {
+    "Municipio": "Mineral de la Reforma",
+    "v": 24,
+    "a": 2,
+    "r": 1,
+    "ndR": 0,
+    "nd": 0,
+    "nm": 8
+  },
+  {
+    "Municipio": "Mineral del Chico",
+    "v": 3,
+    "a": 0,
+    "r": 9,
+    "ndR": 8,
+    "nd": 14,
+    "nm": 1
+  },
+  {
+    "Municipio": "Mineral del Monte",
+    "v": 17,
+    "a": 4,
+    "r": 9,
+    "ndR": 0,
+    "nd": 1,
+    "nm": 4
+  },
+  {
+    "Municipio": "Mixquiahuala de Juárez",
+    "v": 0,
+    "a": 0,
+    "r": 8,
+    "ndR": 8,
+    "nd": 16,
+    "nm": 3
+  },
+  {
+    "Municipio": "Molango de Escamilla",
+    "v": 6,
+    "a": 1,
+    "r": 4,
+    "ndR": 7,
+    "nd": 17,
+    "nm": 0
+  },
+  {
+    "Municipio": "Nicolás Flores",
+    "v": 26,
+    "a": 1,
+    "r": 7,
+    "ndR": 0,
+    "nd": 1,
+    "nm": 0
+  },
+  {
+    "Municipio": "Nopala de Villagrán",
+    "v": 3,
+    "a": 3,
+    "r": 13,
+    "ndR": 0,
+    "nd": 14,
+    "nm": 2
+  },
+  {
+    "Municipio": "Omitlán de Juárez",
+    "v": 18,
+    "a": 4,
+    "r": 7,
+    "ndR": 0,
+    "nd": 4,
+    "nm": 2
+  },
+  {
+    "Municipio": "Pachuca de Soto",
+    "v": 15,
+    "a": 5,
+    "r": 6,
+    "ndR": 0,
+    "nd": 2,
+    "nm": 7
+  },
+  {
+    "Municipio": "Pacula",
+    "v": 13,
+    "a": 5,
+    "r": 5,
+    "ndR": 3,
+    "nd": 7,
+    "nm": 2
+  },
+  {
+    "Municipio": "Pisaflores",
+    "v": 10,
+    "a": 4,
+    "r": 7,
+    "ndR": 1,
+    "nd": 11,
+    "nm": 2
+  },
+  {
+    "Municipio": "Progreso de Obregón",
+    "v": 13,
+    "a": 5,
+    "r": 7,
+    "ndR": 0,
+    "nd": 8,
+    "nm": 2
+  },
+  {
+    "Municipio": "San Agustín Metzquititlán",
+    "v": 8,
+    "a": 1,
+    "r": 7,
+    "ndR": 5,
+    "nd": 14,
+    "nm": 0
+  },
+  {
+    "Municipio": "San Agustín Tlaxiaca",
+    "v": 19,
+    "a": 7,
+    "r": 7,
+    "ndR": 1,
+    "nd": 1,
+    "nm": 0
+  },
+  {
+    "Municipio": "San Bartolo Tutotepec",
+    "v": 13,
+    "a": 4,
+    "r": 3,
+    "ndR": 3,
+    "nd": 10,
+    "nm": 2
+  },
+  {
+    "Municipio": "San Felipe Orizatlán",
+    "v": 25,
+    "a": 5,
+    "r": 3,
+    "ndR": 0,
+    "nd": 2,
+    "nm": 0
+  },
+  {
+    "Municipio": "San Salvador",
+    "v": 15,
+    "a": 3,
+    "r": 2,
+    "ndR": 1,
+    "nd": 11,
+    "nm": 3
+  },
+  {
+    "Municipio": "Santiago de Anaya",
+    "v": 11,
+    "a": 5,
+    "r": 5,
+    "ndR": 2,
+    "nd": 12,
+    "nm": 0
+  },
+  {
+    "Municipio": "Santiago Tulantepec de Lugo Guerrero",
+    "v": 11,
+    "a": 4,
+    "r": 11,
+    "ndR": 0,
+    "nd": 9,
+    "nm": 0
+  },
+  {
+    "Municipio": "Singuilucan",
+    "v": 9,
+    "a": 7,
+    "r": 8,
+    "ndR": 3,
+    "nd": 4,
+    "nm": 4
+  },
+  {
+    "Municipio": "Tasquillo",
+    "v": 5,
+    "a": 2,
+    "r": 15,
+    "ndR": 0,
+    "nd": 13,
+    "nm": 0
+  },
+  {
+    "Municipio": "Tecozautla",
+    "v": 0,
+    "a": 2,
+    "r": 13,
+    "ndR": 2,
+    "nd": 15,
+    "nm": 3
+  },
+  {
+    "Municipio": "Tenango de Doria",
+    "v": 13,
+    "a": 1,
+    "r": 5,
+    "ndR": 0,
+    "nd": 13,
+    "nm": 3
+  },
+  {
+    "Municipio": "Tepeapulco",
+    "v": 17,
+    "a": 4,
+    "r": 14,
+    "ndR": 0,
+    "nd": 0,
+    "nm": 0
+  },
+  {
+    "Municipio": "Tepehuacán de Guerrero",
+    "v": 14,
+    "a": 3,
+    "r": 3,
+    "ndR": 1,
+    "nd": 13,
+    "nm": 1
+  },
+  {
+    "Municipio": "Tepeji del Río de Ocampo",
+    "v": 13,
+    "a": 7,
+    "r": 8,
+    "ndR": 1,
+    "nd": 5,
+    "nm": 1
+  },
+  {
+    "Municipio": "Tepetitlán",
+    "v": 9,
+    "a": 1,
+    "r": 9,
+    "ndR": 2,
+    "nd": 14,
+    "nm": 0
+  },
+  {
+    "Municipio": "Tetepango",
+    "v": 17,
+    "a": 4,
+    "r": 7,
+    "ndR": 1,
+    "nd": 6,
+    "nm": 0
+  },
+  {
+    "Municipio": "Tezontepec de Aldama",
+    "v": 1,
+    "a": 1,
+    "r": 8,
+    "ndR": 8,
+    "nd": 17,
+    "nm": 0
+  },
+  {
+    "Municipio": "Tianguistengo",
+    "v": 12,
+    "a": 11,
+    "r": 12,
+    "ndR": 0,
+    "nd": 0,
+    "nm": 0
+  },
+  {
+    "Municipio": "Tizayuca",
+    "v": 27,
+    "a": 6,
+    "r": 1,
+    "ndR": 0,
+    "nd": 0,
+    "nm": 1
+  },
+  {
+    "Municipio": "Tlahuelilpan",
+    "v": 1,
+    "a": 0,
+    "r": 9,
+    "ndR": 8,
+    "nd": 16,
+    "nm": 1
+  },
+  {
+    "Municipio": "Tlahuiltepa",
+    "v": 16,
+    "a": 2,
+    "r": 5,
+    "ndR": 0,
+    "nd": 7,
+    "nm": 5
+  },
+  {
+    "Municipio": "Tlanalapa",
+    "v": 11,
+    "a": 8,
+    "r": 13,
+    "ndR": 2,
+    "nd": 0,
+    "nm": 1
+  },
+  {
+    "Municipio": "Tlanchinol",
+    "v": 23,
+    "a": 3,
+    "r": 4,
+    "ndR": 0,
+    "nd": 4,
+    "nm": 1
+  },
+  {
+    "Municipio": "Tlaxcoapan",
+    "v": 11,
+    "a": 3,
+    "r": 6,
+    "ndR": 2,
+    "nd": 10,
+    "nm": 3
+  },
+  {
+    "Municipio": "Tolcayuca",
+    "v": 12,
+    "a": 6,
+    "r": 4,
+    "ndR": 3,
+    "nd": 10,
+    "nm": 0
+  },
+  {
+    "Municipio": "Tula de Allende",
+    "v": 19,
+    "a": 4,
+    "r": 6,
+    "ndR": 0,
+    "nd": 5,
+    "nm": 1
+  },
+  {
+    "Municipio": "Tulancingo de Bravo",
+    "v": 20,
+    "a": 5,
+    "r": 9,
+    "ndR": 0,
+    "nd": 0,
+    "nm": 1
+  },
+  {
+    "Municipio": "Villa de Tezontepec",
+    "v": 10,
+    "a": 2,
+    "r": 4,
+    "ndR": 6,
+    "nd": 13,
+    "nm": 0
+  },
+  {
+    "Municipio": "Xochiatipan",
+    "v": 5,
+    "a": 2,
+    "r": 9,
+    "ndR": 5,
+    "nd": 13,
+    "nm": 1
+  },
+  {
+    "Municipio": "Xochicoatlán",
+    "v": 7,
+    "a": 0,
+    "r": 6,
+    "ndR": 6,
+    "nd": 13,
+    "nm": 3
+  },
+  {
+    "Municipio": "Yahualica",
+    "v": 7,
+    "a": 5,
+    "r": 6,
+    "ndR": 3,
+    "nd": 14,
+    "nm": 0
+  },
+  {
+    "Municipio": "Zacualtipán de Ángeles",
+    "v": 8,
+    "a": 0,
+    "r": 4,
+    "ndR": 6,
+    "nd": 17,
+    "nm": 0
+  },
+  {
+    "Municipio": "Zapotlán de Juárez",
+    "v": 17,
+    "a": 0,
+    "r": 7,
+    "ndR": 1,
+    "nd": 5,
+    "nm": 5
+  },
+  {
+    "Municipio": "Zempoala",
+    "v": 21,
+    "a": 11,
+    "r": 1,
+    "ndR": 0,
+    "nd": 0,
+    "nm": 2
+  },
+  {
+    "Municipio": "Zimapán",
+    "v": 18,
+    "a": 8,
+    "r": 5,
+    "ndR": 0,
+    "nd": 2,
+    "nm": 2
+  }
+]
+</script>
+    <script>
+       let modal = document.getElementById('myModal');
+let span = document.getElementsByClassName('close')[0];
+let select = document.getElementById('municipios');
+let myChart;
+
+// Cuando el usuario hace clic en el botón de cierre, cierra el modal
+span.onclick = function() {
+    modal.style.display = 'none';
+}
+
+data.forEach((item, i) => {
+    // Crear un elemento de opción para cada municipio
+    let option = document.createElement('option');
+    option.textContent = item.Municipio;
+    option.value = i; // Usar el índice del municipio como valor
+    select.appendChild(option);
+});
+
+// Cuando se selecciona un municipio, muestra su gráfico
+select.addEventListener('change', () => {
+    let item = data[select.value]; // Obtener los datos del municipio seleccionado
+
+    // Eliminar el gráfico anterior, si existe
+    if (myChart) {
+        myChart.destroy();
+    }
+
+    // Crear un nuevo gráfico para el municipio seleccionado
+    const ctx = document.getElementById('myChart').getContext('2d');
+  myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Óptimo', 'En proceso', 'Rezago', 'Rezago por no presentar información', 'Información no disponible', 'No medible'],
+      datasets: [{
+        data: [item.v, item.a, item.r, item.ndR, item.nd, item.nm],
+        backgroundColor: ['green', '#f39f18', 'red', '#691c32', 'gray', 'white'],
+        borderColor: 'gray',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+        display: true,
+        text: item.Municipio, // usar el nombre del municipio como título de la gráfica
+        color: 'black',
+        font:{
+            size: 44,
+        },
+        
+        
+      },
+        labels: {
+          render: 'value',
+          fontColor: 'white',
+          precision: 2
+        }
+      }
+    }
+  });
+
+
+
+    // Muestra el modal
+    modal.style.display = 'block';
+});
+// Cuando el usuario hace clic en cualquier lugar fuera del contenido del modal, cierra el modal
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = 'none';
+  }
+}
+
+</script>
+
+    </script>
+
+</body>
+</html>

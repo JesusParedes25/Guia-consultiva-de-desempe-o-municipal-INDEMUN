@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guía consultiva de desempeño municipal</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+    crossorigin=""/>
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+    crossorigin=""></script>
+    <script src="capas/capasm1.js"></script>
+<!-- Agrega el CSS de Leaflet.markercluster -->
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@0.7.7/dist/leaflet.css" />
+		<script src="https://unpkg.com/leaflet@0.7.7/dist/leaflet.js"></script>
+	
+<!-- Agrega Leaflet y Leaflet.markercluster JS -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="src\leaflet-search.js"></script>
+<link rel="stylesheet" href="src\leaflet-search.css" />
+
+<link rel="stylesheet" href="panel/dist/leaflet-sidepanel.css" />
+<script src="panel/dist/leaflet-sidepanel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="import" href="graficos/ind_gestion_pastel.html">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" media="screen" href="superfish/src/css/superfish.css">
+
+<!-- link to the JavaScript files (hoverIntent is optional) -->
+<script src="superfish/src/js/hoverIntent.js"></script>
+<script src="superfish/src/js/superfish.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+<body>
+
+
+  <div class="top-bar">
+    <div class="left-section">
+    <nav>
+      <ul class="sf-menu" style="padding-top: 8%;">
+        <li>
+            <a href="#">Selecciona un tema</a>
+            <ul>
+                <li>
+                    <a href="#">Módulo 1 | Organización</a>
+                    <ul>
+                        <li><a href="#" id="showMapLink">1.1 Estructura</a></li>
+                        <li><a href="#" id="showFrameLink">1.2 Planeación</a></li>
+                        <li><a href="#">1.3 Contraloría</a></li>
+                        <li><a href="#">1.4 Capacitación</a></li>
+                    </ul>
+                </li>
+                <li>
+                  <a href="#">Módulo 2 | Hacienda</a>
+                  <ul>
+                      <li><a href="#">2.1 Ingresos</a></li>
+                      <li><a href="#">2.2 Egresos</a></li>
+                      <li><a href="#">2.3 Disciplina financiera</a></li>
+                      <li><a href="#">2.4 Patrimonio</a></li>
+                  </ul>
+              </li>
+              <li>
+                <a href="#">Módulo 3 | Gestión del territorio</a>
+                <ul>
+                    <li><a href="#">3.1 Desarrollo urbano</a></li>
+                    <li><a href="#">3.2 Ordenamiento ecológico</a></li>
+                    <li><a href="#">3.3 Protección civil</a></li>
+                    <li><a href="#">3.4 Coordinación urbana</a></li>
+                </ul>
+            </li>
+            <li>
+              <a href="#">Módulo 4 | Servicios Públicos</a>
+              <ul>
+                  <li><a href="#">4.1 Marco normativo</a></li>
+                  <li><a href="#">4.2 Diagnóstico</a></li>
+                  <li><a href="#">4.3 Acciones</a></li>
+                  <li><a href="#">4.4 Evaluación</a></li>
+              </ul>
+          </li>
+          <li>
+            <a href="#">Módulo 5 | Medio ambiente</a>
+            <ul>
+                <li><a href="#">5.1 Preservación del ambiente</a></li>
+                <li><a href="#">5.2 Cambio climático </a></li>
+                <li><a href="#">5.3 Servicio públicos sustentables</a></li>
+            </ul>
+        </li>
+        <li>
+          <a href="#">Módulo 6 | Desarrollo Social</a>
+          <ul>
+              <li><a href="#">6.1 Educación</a></li>
+              <li><a href="#">6.2 Salud</a></li>
+              <li><a href="#">6.3 Grupos vulnerables</a></li>
+              <li><a href="#">6.4 Igualdad de género</a></li>
+              <li><a href="#">6.5 Juventud</a></li>
+              <li><a href="#">6.6 Deporte y recreación</a></li>
+          </ul>
+      </li>
+      <li>
+        <a href="#">Módulo 7 | Desarrollo Económico</a>
+        <ul>
+            <li><a href="#">7.1 Mejora regulatoria</a></li>
+            <li><a href="#">7.2 Vocación productiva</a></li>
+            <li><a href="#">7.3 Fomento económico</a></li>
+        </ul>
+    </li>
+    <li>
+      <a href="#">Módulo 8 | Gobierno abierto</a>
+      <ul>
+          <li><a href="#">8.1 Transparencia</a></li>
+          <li><a href="#">8.2 Participación ciudadana</a></li>
+          <li><a href="#">8.3 Ética Pública</a></li>
+      </ul>
+  </li>
+            </ul>
+        </li>
+    </ul>
+    </nav>
+  </div>
+  <div class="middle-section">
+    <p class="main-title">SISTEMA HIDALGUENSE DE INDICADORES DE DESEMPEÑO MUNICIPAL</p>
+    <p class="sub-title">GUÍA DE DESEMPEÑO MUNICIPAL</p>
+</div>
+    <div class="right-section" >
+      <img src="img/indemun.png" alt="Logo" style="max-width:30%;height:auto;" >
+    </div>
+  </div>
+  </div>
+    
+
+
+   <div id="map">
+		<!-- Side Panel right -->
+		<div id="mySidepanelRight" class="sidepanel" aria-label="side panel" aria-hidden="false">
+			<div class="sidepanel-inner-wrapper">
+				<nav class="sidepanel-tabs-wrapper" aria-label="sidepanel tab navigation">
+					<ul class="sidepanel-tabs">
+						<li class="sidepanel-tab">
+							<a href="#" class="sidebar-tab-link" role="tab" data-tab-link="tab-1">
+								Indicadores por módulo
+							</a>
+						</li>
+						<li class="sidepanel-tab">
+							<a href="#" class="sidebar-tab-link" role="tab" data-tab-link="tab-2">
+								Aprovechamiento municipal
+							</a>
+						</li>
+						<li class="sidepanel-tab">
+							<a href="#" class="sidebar-tab-link" role="tab" data-tab-link="tab-3">
+								Indicadores de Gestión
+							</a>
+						</li>
+						<li class="sidepanel-tab">
+							<a href="#" class="sidebar-tab-link" role="tab" data-tab-link="tab-4">
+								Indicadores de desempeño
+							</a>
+						</li>
+						<li class="sidepanel-tab">
+							<a href="#" class="sidebar-tab-link" role="tab" data-tab-link="tab-5">
+								Universidades
+							</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="sidepanel-content-wrapper">
+					<div class="sidepanel-content">
+            
+						<div class="sidepanel-tab-content" data-tab-content="tab-1" id="primerIframem">
+              
+              <nav class="tab-nav">
+                  <ul>
+                    <li><a href="#tab1">Módulo 1</a></li>
+                    <li><a href="#tab2">Módulo 2</a></li>
+                    <li><a href="#tab3">Módulo 3</a></li>
+                    <li><a href="#tab1">Módulo 4</a></li>
+                    <li><a href="#tab2">Módulo 5</a></li>
+                    <li><a href="#tab3">Módulo 6</a></li>
+                    <li><a href="#tab2">Módulo 7</a></li>
+                    <li><a href="#tab3">Módulo 8</a></li>
+                  </ul>
+                </nav><br>
+							<h4>Módulo 1 | Organización</h4>
+              <a href="#segundoIframem">Filtrar por municipio</a>
+              <div class="iframe-container">          
+                <iframe class="iframe-bottom" width='995' height="850" src="graficos/modulos.html" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <br>
+            <h4 id="segundoIframem">Filtrar por municipio</h4>
+            <a href="#primerIframem">Regresar al comparativo municipal</a>
+            <div class="iframe-container" >          
+              <iframe  width='1000' height="850" src="graficos/modulos_pastel.html" frameborder="0" allowfullscreen></iframe>
+          </div>
+						</div>
+         
+          <div id="modulo2" class="tab-content">
+            <!-- Contenido del módulo 2 -->
+          </div>
+          
+          <div id="modulo3" class="tab-content">
+            <!-- Contenido del módulo 3 -->
+          </div>
+						<div class="sidepanel-tab-content" data-tab-content="tab-2">
+							<h4>Aprovechamiento Municipal</h4>
+              <div class="iframe-container">         
+                <iframe width='1000' height="850" src="graficos/grafico1.html" frameborder="0" style="border:0" allowfullscreen></iframe>
+              </div>
+						
+						</div>
+						<div class="sidepanel-tab-content" data-tab-content="tab-3" id="primerIframe">
+							<h4>Indicadores de Gestión</h4>
+              <a href="#segundoIframe">Filtrar por municipio</a>
+              <div class="iframe-container">          
+                <iframe class="iframe-bottom" width='995' height="850" src="graficos/ind_gestion.html" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <br>
+            <h4 id="segundoIframe">Filtrar por municipio</h4>
+            <a href="#primerIframe">Regresar al comparativo municipal</a>
+            <div class="iframe-container" >          
+              <iframe  width='1000' height="850" src="graficos/ind_gestion_pastel.html" frameborder="0" allowfullscreen></iframe>
+          </div>
+          
+            
+            </div>
+						<div class="sidepanel-tab-content" data-tab-content="tab-4" id="primerIframed">
+							<h4>Indicadores de Desempeño</h4>
+							 <a href="#segundoIframed">Filtrar por municipio</a>
+              <div class="iframe-container">          
+                <iframe class="iframe-bottom" width='995' height="1100" src="graficos/desempeño.html" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <br>
+            <h4 id="segundoIframed">Filtrar por municipio</h4>
+            <a href="#primerIframed">Regresar al comparativo municipal</a>
+            <div class="iframe-container" >          
+              <iframe  width='1000' height="1100" src="graficos/ind_desempeño_pastel.html" frameborder="0" allowfullscreen></iframe>
+          </div>
+          </div>
+						<div class="sidepanel-tab-content" data-tab-content="tab-5">
+							<h4>Instituciones de Educación Superior</h4>
+							<div class="iframe-container">         
+                <iframe width='940' height="950" src="DataTables/universidades.html" frameborder="0" style="border:0" allowfullscreen></iframe>
+              </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sidepanel-toggle-container">
+				<button class="sidepanel-toggle-button" type="button" aria-label="toggle side panel"></button>
+			</div>
+		</div>
+    <!-- Side Panel left -->
+		<div id="mySidepanelLeft" class="sidepanel" aria-label="side panel" aria-hidden="false">
+			<div class="sidepanel-inner-wrapper">
+				<nav class="sidepanel-tabs-wrapper" aria-label="sidepanel tab navigation">
+					<ul class="sidepanel-tabs">
+						<li class="sidepanel-tab">
+							<a href="#" class="sidebar-tab-link" role="tab" data-tab-link="tab-5">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bookmarks" viewBox="0 0 16 16">
+									<path
+										d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4zm2-1a1 1 0 0 0-1 1v10.566l3.723-2.482a.5.5 0 0 1 .554 0L11 14.566V4a1 1 0 0 0-1-1H4z" />
+									<path d="M4.268 1H12a1 1 0 0 1 1 1v11.768l.223.148A.5.5 0 0 0 14 13.5V2a2 2 0 0 0-2-2H6a2 2 0 0 0-1.732 1z" />
+								</svg>
+							</a>
+						</li>
+						<li class="sidepanel-tab">
+							<a href="#" class="sidebar-tab-link" role="tab" data-tab-link="tab-4">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+									<path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
+									<path
+										d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
+								</svg>
+							</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="sidepanel-content-wrapper">
+					<div class="sidepanel-content">
+            <!--<div class="sidepanel-tab-content" data-tab-content="tab-3">
+							<h4>Guía de Desempeño Municipal</h4><br>
+              <div class="iframe-container">         
+                <iframe  src="https://agendaambientalzonasmetropolitanashidalgo.com.mx/AgendaAmbiental/subPaginas/subIndex/pag5" frameborder="0" style="border:0" allowfullscreen></iframe>
+              </div>
+              </div>!-->
+              <div class="sidepanel-tab-content" data-tab-content="tab-4">
+                <h4>Clasificador de indicadores</h4><br>
+                <div class="iframe-container">         
+                  <iframe  src="docs/clasificacion_indicadores.pdf" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+              </div>
+						<div class="sidepanel-tab-content" data-tab-content="tab-5">
+							<h4>Guía Consultiva de Desempeño Municipal</h4><br>
+              <div class="iframe-container">         
+                <iframe  src="https://www.gob.mx/cms/uploads/attachment/file/710671/2._Cuaderno_de_trabajo_GDM_22-24_iii__1_.pdf" frameborder="0" style="border:0" allowfullscreen></iframe>
+              </div>
+            </div>
+						<!-- <div class="sidepanel-tab-content" data-tab-content="tab-5">
+							<h4>Clasificación de los indicadores</h4><br>
+              <div class="iframe-container">         
+                <iframe  src="https://agendaambientalzonasmetropolitanashidalgo.com.mx/AgendaAmbiental/subPaginas/subIndex/pag5" frameborder="0" style="border:0" allowfullscreen></iframe>
+              </div>
+              </div>!-->
+					</div>
+				</div>
+			</div>
+			<div class="sidepanel-toggle-container">
+				<button class="sidepanel-toggle-button" type="button" aria-label="toggle side panel"></button>
+			</div>
+		</div>
+	</div>
+
+  <div id="frameDiv" style="display: none;">
+    <iframe src="planeacion.html" style="width: 1640px; height: 700px;"></iframe>
+</div>
+
+    <script>
+        
+        
+    //Mapa inicial donde se carga toda la info
+    var map = L.map('map', {zoomControl: false}).setView([20.4791, -98.9621,], 8);
+
+    //Mapa Base
+    var osm= L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: ''
+}).addTo(map);
+
+
+
+
+    //Funciones para coropletas
+    //color Poblacion total
+    function getColor(d) {
+  if (d === 1) {
+    return '#9ACD32';
+  } else if (d === 2) {
+    return '#FFD200';
+  } else if (d === 3) {
+    return '#FF0000';
+  } else {
+    return '#FFEDA0'; // Color por defecto si no coincide con ninguna de las opciones anteriores
+  }
+}
+
+//estilos
+function generateStyleFunction(suffix) {
+  return function(feature) {
+    return {
+      fillColor: getColor(feature.properties['m1_1_' + suffix]), // Cambiar a cualquier color que desees
+      fillOpacity: 1, // Cambiar la opacidad del relleno
+      color: '#235b4e', // Cambiar el color del borde
+      weight: 1, // Cambiar el grosor del borde
+    };
+  };
+}
+
+indicadores=7
+// Generar funciones de estilo para m1_1_1 a m1_1_7
+var styleFunctions = [];
+for (var i = 1; i <= indicadores; i++) {
+  styleFunctions.push(generateStyleFunction(i.toString()));
+}
+
+// Ejemplo de uso: obtener el estilo para m1_1_3
+var style1 = styleFunctions[0]; // el índice 2 corresponde a m1_1_3
+var style2 = styleFunctions[1]
+var style3 = styleFunctions[2]
+var style4 = styleFunctions[3]
+var style5 = styleFunctions[4]
+var style6 = styleFunctions[5]
+var style7 = styleFunctions[6]
+
+
+//EVENTO PARA RESALTAR CON HOVER Y REGRESAR AL ESTILO PRINCIPAL CUANDO SE QUITA EL HOVER
+function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 3,
+        color: 'white',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+
+    layer.bringToFront();
+    info.update(layer.feature.properties);
+}
+
+function resetHighlight(e) {
+    var layer = e.target;
+    var style = layer.options.style(layer.feature);
+
+    layer.setStyle(style);
+    info.update();
+}
+
+function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+}
+function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        click: zoomToFeature
+    });
+}
+
+//SECCIÓN CAPAS
+//Capa geojson población
+var estructuras = [];
+
+// Generar las variables de estructura en un bucle
+for (var i = 1; i <= indicadores; i++) {
+  var estructura = L.geoJson(estructura1_1, {
+    style: window['style' + i],
+    onEachFeature: onEachFeature
+  });
+  estructuras.push(estructura);
+}
+
+// Ejemplo de uso: acceder a las variables de estructura
+var estructura1 = estructuras[0];
+var estructura2 = estructuras[1];
+var estructura3 = estructuras[2];
+var estructura4 = estructuras[3];
+var estructura5 = estructuras[4];
+var estructura6 = estructuras[5];
+var estructura7 = estructuras[6];
+// ... estructura4, estructura5, estructura6, estructura7
+
+
+
+
+///Caja con información
+
+function valorToCircle(valor) {
+    switch(valor) {
+        case 1: 
+            return '<div style="height: 20px; width: 20px; background-color: green; border-radius: 50%; display: inline-block;"></div>';
+        case 2: 
+            return '<div style="height: 20px; width: 20px; background-color: yellow; border-radius: 50%; display: inline-block;"></div>';
+        case 3: 
+            return '<div style="height: 20px; width: 20px; background-color: red; border-radius: 50%; display: inline-block;"></div>';
+        default: 
+            return valor;
+    }
+}
+
+var info = L.control({position:'bottomright'});
+
+info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this.update();
+    return this._div;
+};
+
+
+// method that we will use to update the control based on feature properties passed
+info.update = function (props) {
+    this._div.innerHTML = '<img src="img/icon/location.gif" style="width: 40px;"> <h4>Indicadores Sobre el tema "Estructura" | Modulo 1</h4><br>' + (props ?
+    `   <b style="color: white;font-size: 26px;text-align: center">${props.NOMGEO.toUpperCase()}</b><br /><br />
+        <b style="font-size: 17px">Bando, Policia y Gobierno</b>: <span style="font-size: 20px;color:white;font-weight: bold">${valorToCircle(props.m1_1_1)}</span><br /><br />
+        <b style="font-size: 17px">Manuales de organización</b>: <span style="font-size: 20px;color:white;font-weight: bold">${valorToCircle(props.m1_1_2)}</span><br /><br />
+        <b style="font-size: 17px">Tabulador de sueldos con la <br>estructura salarial del personal<br>de la administración pública municipal</b>: <span style="font-size: 20px;color:white;font-weight: bold">${valorToCircle(props.m1_1_3)}</span><br /><br />
+        <b style="font-size: 17px">Unidades administrativas existentes<br>en función del número de<br>unidades administrativas promedio</b>: <span style="font-size: 20px;color:white;font-weight: bold">${valorToCircle(props.m1_1_4)}</span><br /><br />
+        <b style="font-size: 17px">Personal municipal total por cada<br>1000 habitantes</b>: <span style="font-size: 20px;color:white;font-weight: bold">${valorToCircle(props.m1_1_5)}</span><br /><br />
+        <b style="font-size: 17px">Nivel salarial del Presidente municipal</b>: <span style="font-size: 20px;color:white;font-weight: bold">${valorToCircle(props.m1_1_6)}</span><br /><br />
+        <b style="font-size: 17px"> Participación de las mujeres<br>en puestos de mando medio y superior<br>de la administración pública municipal</b>: <span style="font-size: 20px;color:white;font-weight: bold">${valorToCircle(props.m1_1_7)}</span><br /><br />`
+        : 'Selecciona algún municipio');
+};
+
+
+info.addTo(map);  
+
+
+
+
+// Sección de LEYENDAS
+// Leyenda de la capa población
+var legend = L.control({ position: 'bottomleft' });
+
+legend.onAdd = function (map) {
+  var div = L.DomUtil.create('div', 'info legend');
+  var grades = [1, 2, 3];
+  var labels = [];
+
+  // Agregar título más pequeño
+  div.innerHTML = '<strong>Semaforización</strong><br>';
+
+  // Generar etiquetas para la leyenda basadas en los valores de 'grades'
+  for (var i = 0; i < grades.length; i++) {
+    var grade = grades[i];
+    var label;
+    switch (grade) {
+      case 1: label = 'Óptimo'; break;
+      case 2: label = 'En Proceso'; break;
+      case 3: label = 'Rezago'; break;
+      default: label = 'N/A';
+    }
+
+    // Usar span en lugar de h6 para hacerlo más compacto
+    labels.push(
+      '<i style="background:' + getColor(grade) + '; width: 10px; height: 10px; display: inline-block; border-radius: 50%;"></i> ' +
+      '<span>' + label + '</span>'
+    );
+  }
+
+  // Añadir 'No medible' y 'No disponible' con un estilo más compacto
+  labels.push(
+    '<i style="background:white; border: 1px solid black; width: 10px; height: 10px; display: inline-block; border-radius: 50%;"></i> ' +
+    '<span>No medible</span>'
+  );
+  labels.push(
+    '<i style="background:gray; width: 10px; height: 10px; display: inline-block; border-radius: 50%;"></i> ' +
+    '<span>No disponible</span>'
+  );
+
+  div.innerHTML += labels.join('<br>');
+  return div;
+};
+
+
+
+
+var baseMaps = {
+
+   /* "Mapa clásico": osm,*/
+    
+};
+var baseMaps1 = {
+};
+var pobla = {
+    //"<img src='img/icon/clues.png' style='max-width: 18px;' />   Indicadores Sobre el tema "Estructura": markers,
+    " 1.1.1 Bando, Policia y Gobierno": estructura1.addTo(map),
+    " 1.1.2 Manuales de organización": estructura2, 
+    "1.1.3 Tabulador de sueldos con la <br>estructura salarial del personal<br> de la administración pública municipal": estructura3,
+    " 1.1.4 Unidades administrativas existentes<br>en función del número de <br>unidades administrativas promedio": estructura4,  
+    " 1.1.5 Personal municipal total por cada <br>1000 habitantes": estructura5,  
+    " 1.1.6 Nivel salarial del Presidente municipal": estructura6,  
+    " 1.1.7 Participación de las mujeres<br>en puestos de mando medio y superior  <br>de la administración pública municipal": estructura7,  
+};
+
+
+//Se agrega un Control de capas
+//var layerControl = L.control.layers(baseMaps, pobla,{collapsed: false, position: 'bottomleft'}).addTo(map);
+// Se agrega una barra de escala
+//L.control.scale({position: 'bottomleft'}).addTo(map);
+
+// Agregar el control de leyenda al mapa
+legend.addTo(map);
+
+
+    //Marca de Agua SIGEH
+    L.Control.Watermark = L.Control.extend({
+    onAdd: function(map) {
+        var img = L.DomUtil.create('img');
+
+        img.src = 'img/sigeh_centro.png';
+        img.style.width = '400px';
+
+        return img;
+    },
+
+    onRemove: function(map) {
+        // Nothing to do here
+    }
+});
+
+L.control.watermark = function(opts) {
+    return new L.Control.Watermark(opts);
+}
+
+//L.control.watermark({ position: 'bottomleft' }).addTo(map);
+
+
+var searchControl = new L.Control.Search({
+       layer: estructura1,
+       propertyName: 'NOMGEO',
+       circleLocation: true,
+       position: 'bottomright'
+});
+
+searchControl.on('search_locationfound', function(e) {
+       e.layer.setStyle({fillColor: '#3f0', color: '#0f0'});
+})
+
+
+
+//Funciones extras muy importantes
+
+map.addControl(searchControl);
+const sidepanelLeft = L.control.sidepanel('mySidepanelLeft', {
+			tabsPosition: 'left',
+			startTab: 'tab-5',
+      darkMode: true,
+		}).addTo(map);
+const sidepanelRight = L.control.sidepanel('mySidepanelRight', {
+			panelPosition: 'right',
+			tabsPosition: 'top',
+			pushControls: true,
+			darkMode: false,
+			startTab: 1
+		}).addTo(map);
+
+var DropdownControl = L.Control.extend({
+    onAdd: function(map) {
+        var container = L.DomUtil.create('div', 'dropdown');
+        var select = L.DomUtil.create('select', 'dropdown-menu', container);
+
+        // Agrega las opciones al menú desplegable
+        var options = [
+            { value: '', text: 'Selecciona aquí un indicador para mapearlo' },
+            { value: 'modulo1', text: '1.1.1 Bando, Policia y Gobierno' },
+            { value: 'modulo2', text: '1.1.2 Manuales de organización' },
+            { value: 'modulo3', text: '1.1.3 Tabulador de sueldos con la estructura salarial del personal de la administración pública municipal' },
+            { value: 'modulo4', text: '1.1.4 Unidades administrativas existentes en función del número de unidades administrativas promedio' },
+            { value: 'modulo5', text: '1.1.5 Personal municipal total por cada 1000 habitantes' },
+            { value: 'modulo6', text: '1.1.6 Nivel salarial del Presidente municipal' },
+            { value: 'modulo7', text: '1.1.7 Participación de las mujeres en puestos de mando medio y superior de la administración pública municipal' },
+        ];
+
+        options.forEach(function(option) {
+            var optionElement = L.DomUtil.create('option', '', select);
+            optionElement.value = option.value;
+            optionElement.text = option.text;
+        });
+
+        // Posiciona el control en el centro superior del mapa
+        var controlPosition = container.style;
+        controlPosition.position = 'absolute';
+        controlPosition.top = '20px';
+        controlPosition.left = '50%';
+        controlPosition.transform = 'translateX(-50%)';
+        controlPosition.zIndex = '1000';
+
+        // Detiene la propagación de eventos del control para evitar conflictos con el mapa
+        L.DomEvent.disableClickPropagation(container);
+
+        // Evento para detectar cambios en la selección del menú desplegable
+        select.addEventListener('change', function(event) {
+            var selectedValue = event.target.value;
+
+            // Verifica si se seleccionó "Módulo 2 | Hacienda"
+            if (selectedValue === 'modulo2') {
+                // Activa la capa "Estructura 2"
+                estructura2.addTo(map);
+            } else {
+                // Remueve la capa "Estructura 2" si está agregada
+                if (map.hasLayer(estructura2)) {
+                    map.removeLayer(estructura2);
+                }
+            }
+        });
+
+        return container;
+    }
+});
+
+// Crea una instancia del control personalizado
+var dropdownControl = new DropdownControl();
+
+// Agrega el control al mapa Leaflet
+dropdownControl.addTo(map);
+
+
+jQuery(document).ready(function(){
+    jQuery('ul.sf-menu').superfish();
+  });
+
+  //para sustitur el id=mapa por los htmls
+  document.getElementById("showFrameLink").addEventListener("click", function() {
+    // Ocultar el mapa
+    document.getElementById("map").style.display = "none";
+    
+    // Mostrar el iframe
+    document.getElementById("frameDiv").style.display = "block";
+});
+
+document.getElementById("showMapLink").addEventListener("click", function() {
+    // Ocultar el iframe
+    document.getElementById("frameDiv").style.display = "none";
+
+    // Mostrar el mapa
+    document.getElementById("map").style.display = "block";
+});
+
+
+    </script>
+
+     
+
+    
+</body>
+</html>

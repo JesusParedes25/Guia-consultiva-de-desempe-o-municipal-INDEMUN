@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indicadores Gestión</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3"></script>
+
+    <style>
+      .hidden {
+        display: none;
+      }
+      /* Estilo del modal (fondo negro con un poco de opacidad) */
+.modal {
+  display: none; /* Ocultar por defecto */
+  position: fixed; /* Quedarse en su sitio */
+  z-index: 1; /* Situarse encima de todo */
+  padding-top: 100px; /* Ubicar 100px desde la parte superior */
+  left: 0;
+  top: 0;
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Altura completa */
+  overflow: auto; /* Habilitar scroll si es necesario */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(255, 255, 255, 0.5); /* Color negro con opacidad */
+}
+
+/* Estilo del contenedor modal */
+.modal-content {
+  position: relative;
+  
+  margin: auto;
+  padding: 0;
+  width: 80%;
+  max-width: 500px; /* Establecer un ancho máximo para el modal */
+}
+
+/* Estilo del botón de cierre del modal */
+.close {
+  color: black;
+  float: right;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+    </style>
+
+</head>
+<body>
+
+            <!-- Los nombres de los municipios se muestran aquí -->
+            <select id="municipios">
+                <!-- Los nombres de los municipios se agregarán dinámicamente aquí -->
+            </select>
+          
+            <div id="myModal" class="modal">
+                <!-- Contenido del modal -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div id="modal-text"></div> <!-- Contenedor para el texto -->
+                </div>
+            </div>
+              
+
+
+<script>
+   var data = [
+  {
+    "Municipio": "Acatlán",
+    "Indicadores en Óptimo": 18,
+    "Porcentaje de Aprovechamiento": "15.65%"
+  },
+  {
+    "Municipio": "Acaxochitlán",
+    "Indicadores en Óptimo": 32,
+    "Porcentaje de Aprovechamiento": "27.83%"
+  },
+  {
+    "Municipio": "Actopan",
+    "Indicadores en Óptimo": 34,
+    "Porcentaje de Aprovechamiento": "32.38%"
+  },
+  {
+    "Municipio": "Agua Blanca de Iturbide",
+    "Indicadores en Óptimo": 23,
+    "Porcentaje de Aprovechamiento": "20.35%"
+  },
+  {
+    "Municipio": "Ajacuba",
+    "Indicadores en Óptimo": 21,
+    "Porcentaje de Aprovechamiento": "19.09%"
+  },
+  {
+    "Municipio": "Alfajayucan",
+    "Indicadores en Óptimo": 12,
+    "Porcentaje de Aprovechamiento": "10.62%"
+  },
+  {
+    "Municipio": "Almoloya",
+    "Indicadores en Óptimo": 70,
+    "Porcentaje de Aprovechamiento": "60.87%"
+  },
+  {
+    "Municipio": "Apan",
+    "Indicadores en Óptimo": 31,
+    "Porcentaje de Aprovechamiento": "30.39%"
+  },
+  {
+    "Municipio": "Atitalaquia",
+    "Indicadores en Óptimo": 28,
+    "Porcentaje de Aprovechamiento": "24.78%"
+  },
+  {
+    "Municipio": "Atlapexco",
+    "Indicadores en Óptimo": 40,
+    "Porcentaje de Aprovechamiento": "37.04%"
+  },
+  {
+    "Municipio": "Atotonilco de Tula",
+    "Indicadores en Óptimo": 18,
+    "Porcentaje de Aprovechamiento": "15.79%"
+  },
+  {
+    "Municipio": "Atotonilco el Grande",
+    "Indicadores en Óptimo": 35,
+    "Porcentaje de Aprovechamiento": "33.33%"
+  },
+  {
+    "Municipio": "Calnali",
+    "Indicadores en Óptimo": 28,
+    "Porcentaje de Aprovechamiento": "25.93%"
+  },
+  {
+    "Municipio": "Cardonal",
+    "Indicadores en Óptimo": 27,
+    "Porcentaje de Aprovechamiento": "26.73%"
+  },
+  {
+    "Municipio": "Chapantongo",
+    "Indicadores en Óptimo": 20,
+    "Porcentaje de Aprovechamiento": "19.80%"
+  },
+  {
+    "Municipio": "Chapulhuacán",
+    "Indicadores en Óptimo": 25,
+    "Porcentaje de Aprovechamiento": "21.74%"
+  },
+  {
+    "Municipio": "Chilcuautla",
+    "Indicadores en Óptimo": 3,
+    "Porcentaje de Aprovechamiento": "2.61%"
+  },
+  {
+    "Municipio": "Cuautepec de Hinojosa",
+    "Indicadores en Óptimo": 41,
+    "Porcentaje de Aprovechamiento": "35.65%"
+  },
+  {
+    "Municipio": "El Arenal",
+    "Indicadores en Óptimo": 10,
+    "Porcentaje de Aprovechamiento": "9.80%"
+  },
+  {
+    "Municipio": "Eloxochitlán",
+    "Indicadores en Óptimo": 9,
+    "Porcentaje de Aprovechamiento": "8.49%"
+  },
+  {
+    "Municipio": "Emiliano Zapata",
+    "Indicadores en Óptimo": 22,
+    "Porcentaje de Aprovechamiento": "20.75%"
+  },
+  {
+    "Municipio": "Epazoyucan",
+    "Indicadores en Óptimo": 59,
+    "Porcentaje de Aprovechamiento": "55.66%"
+  },
+  {
+    "Municipio": "Francisco I. Madero",
+    "Indicadores en Óptimo": 49,
+    "Porcentaje de Aprovechamiento": "44.95%"
+  },
+  {
+    "Municipio": "Huasca de Ocampo",
+    "Indicadores en Óptimo": 39,
+    "Porcentaje de Aprovechamiento": "35.78%"
+  },
+  {
+    "Municipio": "Huautla",
+    "Indicadores en Óptimo": 49,
+    "Porcentaje de Aprovechamiento": "45.37%"
+  },
+  {
+    "Municipio": "Huazalingo",
+    "Indicadores en Óptimo": 38,
+    "Porcentaje de Aprovechamiento": "34.86%"
+  },
+  {
+    "Municipio": "Huehuetla",
+    "Indicadores en Óptimo": 68,
+    "Porcentaje de Aprovechamiento": "64.76%"
+  },
+  {
+    "Municipio": "Huejutla de Reyes",
+    "Indicadores en Óptimo": 67,
+    "Porcentaje de Aprovechamiento": "60.91%"
+  },
+  {
+    "Municipio": "Huichapan",
+    "Indicadores en Óptimo": 75,
+    "Porcentaje de Aprovechamiento": "66.37%"
+  },
+  {
+    "Municipio": "Ixmiquilpan",
+    "Indicadores en Óptimo": 22,
+    "Porcentaje de Aprovechamiento": "23.16%"
+  },
+  {
+    "Municipio": "Jacala de Ledezma",
+    "Indicadores en Óptimo": 15,
+    "Porcentaje de Aprovechamiento": "13.27%"
+  },
+  {
+    "Municipio": "Jaltocán",
+    "Indicadores en Óptimo": 29,
+    "Porcentaje de Aprovechamiento": "25.22%"
+  },
+  {
+    "Municipio": "Juárez Hidalgo",
+    "Indicadores en Óptimo": 77,
+    "Porcentaje de Aprovechamiento": "66.96%"
+  },
+  {
+    "Municipio": "La Misión",
+    "Indicadores en Óptimo": 13,
+    "Porcentaje de Aprovechamiento": "13.00%"
+  },
+  {
+    "Municipio": "Lolotla",
+    "Indicadores en Óptimo": 15,
+    "Porcentaje de Aprovechamiento": "14.29%"
+  },
+  {
+    "Municipio": "Metepec",
+    "Indicadores en Óptimo": 27,
+    "Porcentaje de Aprovechamiento": "23.48%"
+  },
+  {
+    "Municipio": "Metztitlán",
+    "Indicadores en Óptimo": 48,
+    "Porcentaje de Aprovechamiento": "45.28%"
+  },
+  {
+    "Municipio": "Mineral de la Reforma",
+    "Indicadores en Óptimo": 90,
+    "Porcentaje de Aprovechamiento": "91.84%"
+  },
+  {
+    "Municipio": "Mineral del Chico",
+    "Indicadores en Óptimo": 35,
+    "Porcentaje de Aprovechamiento": "31.82%"
+  },
+  {
+    "Municipio": "Mineral del Monte",
+    "Indicadores en Óptimo": 73,
+    "Porcentaje de Aprovechamiento": "66.97%"
+  },
+  {
+    "Municipio": "Mixquiahuala de Juárez",
+    "Indicadores en Óptimo": 1,
+    "Porcentaje de Aprovechamiento": "0.95%"
+  },
+  {
+    "Municipio": "Molango de Escamilla",
+    "Indicadores en Óptimo": 15,
+    "Porcentaje de Aprovechamiento": "13.04%"
+  },
+  {
+    "Municipio": "Nicolás Flores",
+    "Indicadores en Óptimo": 80,
+    "Porcentaje de Aprovechamiento": "69.57%"
+  },
+  {
+    "Municipio": "Nopala de Villagrán",
+    "Indicadores en Óptimo": 27,
+    "Porcentaje de Aprovechamiento": "25.47%"
+  },
+  {
+    "Municipio": "Omitlán de Juárez",
+    "Indicadores en Óptimo": 32,
+    "Porcentaje de Aprovechamiento": "30.19%"
+  },
+  {
+    "Municipio": "Pachuca de Soto",
+    "Indicadores en Óptimo": 70,
+    "Porcentaje de Aprovechamiento": "66.67%"
+  },
+  {
+    "Municipio": "Pacula",
+    "Indicadores en Óptimo": 46,
+    "Porcentaje de Aprovechamiento": "43.40%"
+  },
+  {
+    "Municipio": "Pisaflores",
+    "Indicadores en Óptimo": 27,
+    "Porcentaje de Aprovechamiento": "25.47%"
+  },
+  {
+    "Municipio": "Progreso de Obregón",
+    "Indicadores en Óptimo": 45,
+    "Porcentaje de Aprovechamiento": "42.45%"
+  },
+  {
+    "Municipio": "San Agustín Metzquititlán",
+    "Indicadores en Óptimo": 18,
+    "Porcentaje de Aprovechamiento": "15.65%"
+  },
+  {
+    "Municipio": "San Agustín Tlaxiaca",
+    "Indicadores en Óptimo": 42,
+    "Porcentaje de Aprovechamiento": "37.50%"
+  },
+  {
+    "Municipio": "San Bartolo Tutotepec",
+    "Indicadores en Óptimo": 53,
+    "Porcentaje de Aprovechamiento": "49.53%"
+  },
+  {
+    "Municipio": "San Felipe Orizatlán",
+    "Indicadores en Óptimo": 73,
+    "Porcentaje de Aprovechamiento": "63.48%"
+  },
+  {
+    "Municipio": "San Salvador",
+    "Indicadores en Óptimo": 53,
+    "Porcentaje de Aprovechamiento": "50.48%"
+  },
+  {
+    "Municipio": "Santiago de Anaya",
+    "Indicadores en Óptimo": 47,
+    "Porcentaje de Aprovechamiento": "40.87%"
+  },
+  {
+    "Municipio": "Santiago Tulantepec de Lugo Guerrero",
+    "Indicadores en Óptimo": 39,
+    "Porcentaje de Aprovechamiento": "40.87%"
+  },
+  {
+    "Municipio": "Singuilucan",
+    "Indicadores en Óptimo": 52,
+    "Porcentaje de Aprovechamiento": "50.49%"
+  },
+  {
+    "Municipio": "Tasquillo",
+    "Indicadores en Óptimo": 18,
+    "Porcentaje de Aprovechamiento": "16.07%"
+  },
+  {
+    "Municipio": "Tecozautla",
+    "Indicadores en Óptimo": 0,
+    "Porcentaje de Aprovechamiento": "0.00%"
+  },
+  {
+    "Municipio": "Tenango de Doria",
+    "Indicadores en Óptimo": 56,
+    "Porcentaje de Aprovechamiento": "53.33%"
+  },
+  {
+    "Municipio": "Tepeapulco",
+    "Indicadores en Óptimo": 45,
+    "Porcentaje de Aprovechamiento": "39.13%"
+  },
+  {
+    "Municipio": "Tepehuacán de Guerrero",
+    "Indicadores en Óptimo": 33,
+    "Porcentaje de Aprovechamiento": "30.56%"
+  },
+  {
+    "Municipio": "Tepeji del Río de Ocampo",
+    "Indicadores en Óptimo": 35,
+    "Porcentaje de Aprovechamiento": "30.97%"
+  },
+  {
+    "Municipio": "Tepetitlán",
+    "Indicadores en Óptimo": 22,
+    "Porcentaje de Aprovechamiento": "19.13%"
+  },
+  {
+    "Municipio": "Tetepango",
+    "Indicadores en Óptimo": 45,
+    "Porcentaje de Aprovechamiento": "39.13%"
+  },
+  {
+    "Municipio": "Tezontepec de Aldama",
+    "Indicadores en Óptimo": 2,
+    "Porcentaje de Aprovechamiento": "1.74%"
+  },
+  {
+    "Municipio": "Tianguistengo",
+    "Indicadores en Óptimo": 16,
+    "Porcentaje de Aprovechamiento": "13.91%"
+  },
+  {
+    "Municipio": "Tizayuca",
+    "Indicadores en Óptimo": 106,
+    "Porcentaje de Aprovechamiento": "93.81%"
+  },
+  {
+    "Municipio": "Tlahuelilpan",
+    "Indicadores en Óptimo": 1,
+    "Porcentaje de Aprovechamiento": "0.88%"
+  },
+  {
+    "Municipio": "Tlahuiltepa",
+    "Indicadores en Óptimo": 70,
+    "Porcentaje de Aprovechamiento": "67.96%"
+  },
+  {
+    "Municipio": "Tlanalapa",
+    "Indicadores en Óptimo": 44,
+    "Porcentaje de Aprovechamiento": "38.60%"
+  },
+  {
+    "Municipio": "Tlanchinol",
+    "Indicadores en Óptimo": 72,
+    "Porcentaje de Aprovechamiento": "66.67%"
+  },
+  {
+    "Municipio": "Tlaxcoapan",
+    "Indicadores en Óptimo": 36,
+    "Porcentaje de Aprovechamiento": "33.33%"
+  },
+  {
+    "Municipio": "Tolcayuca",
+    "Indicadores en Óptimo": 39,
+    "Porcentaje de Aprovechamiento": "33.91%"
+  },
+  {
+    "Municipio": "Tula de Allende",
+    "Indicadores en Óptimo": 63,
+    "Porcentaje de Aprovechamiento": "55.75%"
+  },
+  {
+    "Municipio": "Tulancingo de Bravo",
+    "Indicadores en Óptimo": 87,
+    "Porcentaje de Aprovechamiento": "78.38%"
+  },
+  {
+    "Municipio": "Villa de Tezontepec",
+    "Indicadores en Óptimo": 61,
+    "Porcentaje de Aprovechamiento": "53.04%"
+  },
+  {
+    "Municipio": "Xochiatipan",
+    "Indicadores en Óptimo": 14,
+    "Porcentaje de Aprovechamiento": "12.96%"
+  },
+  {
+    "Municipio": "Xochicoatlán",
+    "Indicadores en Óptimo": 20,
+    "Porcentaje de Aprovechamiento": "19.05%"
+  },
+  {
+    "Municipio": "Yahualica",
+    "Indicadores en Óptimo": 27,
+    "Porcentaje de Aprovechamiento": "23.48%"
+  },
+  {
+    "Municipio": "Zacualtipán de Ángeles",
+    "Indicadores en Óptimo": 59,
+    "Porcentaje de Aprovechamiento": "52.68%"
+  },
+  {
+    "Municipio": "Zapotlán de Juárez",
+    "Indicadores en Óptimo": 76,
+    "Porcentaje de Aprovechamiento": "69.72%"
+  },
+  {
+    "Municipio": "Zempoala",
+    "Indicadores en Óptimo": 49,
+    "Porcentaje de Aprovechamiento": "43.75%"
+  },
+  {
+    "Municipio": "Zimapán",
+    "Indicadores en Óptimo": 54,
+    "Porcentaje de Aprovechamiento": "50.94%"
+  }
+]
+</script>
+    <script>
+        var modal = document.getElementById('myModal');
+    var span = document.getElementsByClassName('close')[0];
+    span.onclick = function() {
+        modal.style.display = 'none';
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    data.forEach((item, i) => {
+        let listItem = document.createElement('option');
+        listItem.textContent = item.Municipio;
+        listItem.value = i;
+        document.getElementById('municipios').appendChild(listItem);
+    });
+
+    document.getElementById('municipios').addEventListener('change', (event) => {
+    let item = data[event.target.value]; // Recuperar los datos del municipio seleccionado
+    let textContainer = document.getElementById('modal-text');
+
+    // Limpiar el contenedor de texto
+    textContainer.innerHTML = '';
+
+    // Crear e insertar nuevos elementos de texto para cada campo
+    let indicadoresOptimoText = document.createElement('p');
+    indicadoresOptimoText.textContent = 'Indicadores en óptimo: ' + item['Indicadores en Óptimo'];
+    textContainer.appendChild(indicadoresOptimoText);
+
+    let porcentajeAprovechamientoText = document.createElement('p');
+    porcentajeAprovechamientoText.textContent = 'Porcentaje de aprovechamiento: ' + item['Porcentaje de Aprovechamiento'];
+    textContainer.appendChild(porcentajeAprovechamientoText);
+
+    // Mostrar el modal
+    modal.style.display = 'block';
+});
+
+
+
+</script>
+
+    </script>
+
+</body>
+</html>

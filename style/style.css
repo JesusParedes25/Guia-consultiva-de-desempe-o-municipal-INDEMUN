@@ -1,0 +1,348 @@
+#map { height: 180px; }
+
+html,
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    height: 100%;
+    color: #1f1412;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#myChart {
+width: 800px;
+height: 600px;
+font-family: 'Montserrat', sans-serif;
+}
+
+.header h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header a {
+    font-size: 16px;
+    color: #199900;
+    text-decoration: none;
+    margin-left: 24px;
+}
+
+.header a:hover {
+    color: #116600;
+    text-decoration: underline;
+}
+
+.header a span {
+    margin-left: 4px;
+}
+
+.header a svg {
+    vertical-align: middle;
+}
+
+#map {
+
+    width: 100%;
+    height: 100vh;
+    border: 1px solid #1f1412;
+font-family: 'Montserrat', sans-serif;
+}
+
+@media all and (min-width: 1024px) {
+    #map {
+        height: 768px;
+        width: 1024px;
+    }
+}
+
+.sidepanel-content {
+    font-size: 1rem;
+}
+
+.sidepanel-content h4 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.sidepanel-content a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #199900;
+    transition: color 0.3s ease-in;
+}
+
+.sidepanel-content a:hover {
+    color: #116600;
+    text-decoration: underline;
+}
+
+
+#map { height: 1080px; }
+
+body {
+padding: 0;
+margin: 0;
+}
+html, body, #map {
+height: 100%;
+width: 100vw;
+font-family: 'Montserrat', sans-serif;
+}   
+.info {
+padding: 6px 8px;
+padding-right: 30px;
+font: 14px/16px Arial, Helvetica, sans-serif;
+background: white;
+background: rgba(105,28,50,0.8);
+color:#DDc9A3;
+box-shadow: 0 0 15px rgba(0,0,0,0.2);
+border-radius: 5px;
+}
+.info h4 {
+font: 14px/16px Arial, Helvetica, sans-serif;
+margin: 0 0 5px;
+color: white;
+font-weight: bold;
+}
+.info h5 {
+font: 24px/26px Arial, Helvetica, sans-serif;
+margin: 0 0 15px;
+color: black;
+font-weight: bold;
+}
+.info h6 {
+font: 16px/18px Arial, Helvetica, sans-serif;
+margin: 0 0 0px;
+color: black;
+}
+.legend {
+line-height: 18px;
+background: rgba(255,255,255,0.7);
+color: black;
+}
+.legend i {
+width: 18px;
+height: 18px;
+float: left;
+margin-right: 8px;
+opacity: 0.7;
+}
+.popup {
+background-color: #691c32;
+color: #fff;
+font-size: 14px;
+padding: 10px;
+border-radius: 5px;
+}
+
+.popup__title {
+margin-top: 0;
+font-size: 18px;
+font-weight: bold;
+}
+
+.popup__text {
+margin: 5px 0;
+}
+.iframe-container {
+width: 1000px;
+height: auto; /* Para que la altura se ajuste al contenido */
+}
+
+.iframe-container iframe {
+width: 90%;  /* Para que se ajuste al ancho del contenedor */
+height: 950px; /* Altura que desees para los iframes */
+}
+/* Estilo para la navegación */
+.tab-nav ul {
+display: inline-flex;
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color: #9f2241;
+width: 90%;
+}
+
+/* Estilo para las pestañas */
+.tab-nav ul li {
+flex: 1;
+}
+
+/* Estilo para los enlaces */
+.tab-nav ul li a {
+display: inline-block;
+color: white;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+transition: 0.3s;
+}
+
+/* Cambiar el color de fondo del enlace al pasar el mouse */
+.tab-nav ul li a:hover {
+background-color: #111;
+}
+
+/* Cambiar el color de fondo del enlace al estar activo (seleccionado) */
+.tab-nav ul li a:active,
+.tab-nav ul li a:focus {
+background-color: #4CAF50;
+}
+
+/* Estilo para el contenido de las pestañas */
+.tab-content {
+display: none; /* Ocultar por defecto */
+padding: 10px;
+background-color: #ddd;
+height: auto;
+}
+.dropdown-container {
+position: absolute;
+top: 20px;
+left: 50%;
+transform: translateX(-50%);
+z-index: 1000;
+width: 250px;
+}
+
+
+
+header {
+width: 100%;
+position: absolute;
+top: 0;
+left: 0;
+z-index: 1000; /* Para que se superponga a otros elementos */
+background-color: #9f2241;
+color: white;
+padding: 10px;
+box-sizing: border-box; /* Para incluir el padding en el ancho total */
+display: flex;
+justify-content: space-between; /* Para separar el título y el selector */
+align-items: center;
+}
+
+h1 {
+font-family: 'Montserrat', sans-serif;
+margin: 0; /* Para eliminar los márgenes por defecto del h1 */
+}
+
+#module-select {
+color: #000;
+background-color: #fff;
+}
+
+.top-bar {
+width: 100%;
+/* Cambiar esta línea */
+background-image: linear-gradient(to bottom, #fff, #d4c19c);
+color: #fff;
+display: flex;
+align-items: center;
+justify-content: space-between;
+font-size: 13px;
+padding: 20px;
+box-sizing: border-box;
+z-index: 999;
+max-height: 14%;
+font-family: Montserrat;
+
+border: 2px solid #9f2241; /* Esto añade un borde blanco de 2px */
+}
+
+
+
+.left-section {
+flex: 1; /* Esto divide el espacio en tres */
+display: flex;
+justify-content: left;
+align-items: center;
+
+}
+.middle-section {
+text-align: center;
+margin-top: 5%;
+margin-bottom: 5%;
+color: #9f2241;
+flex: 3.5; /* Esto divide el espacio en tres */
+display: flex;
+flex-direction: column; /* Añade esta línea */
+justify-content: center;
+align-items: center;
+font-size: 1.5vw; /* Cambiar el tamaño de la fuente para que sea relativo al ancho de la pantalla */
+font-family: 'Montserrat', sans-serif; /* Asegúrate de tener la fuente Montserrat cargada en tu CSS o HTML. */
+}
+
+@media only screen and (max-width: 600px) {
+.middle-section {
+font-size: 3vw; /* Aumentar el tamaño de la fuente para que sea legible en pantallas pequeñas */
+margin-top: 10%; /* Aumentar el margen superior en pantallas pequeñas */
+margin-bottom: 10%; /* Aumentar el margen inferior en pantallas pequeñas */
+}
+}
+
+
+.main-title {
+font-size: 20px; 
+font-family: 'Montserrat', sans-serif;
+font-weight: bold;
+}
+
+.sub-title {
+font-size: 18px; /* Ajustar según sea necesario */
+font-family: 'Montserrat', sans-serif;
+font-weight: normal;
+margin-top: -20px; /* Añade esta línea para reducir la distancia */
+}
+
+.right-section {
+flex: 1.5; /* Esto divide el espacio en tres */
+display: flex;
+justify-content: right;
+align-items: center;
+
+
+}
+
+
+.dropdown {
+position: fixed;
+left: 90%;
+bottom: 82%;
+transform: translate(-50%, 50%);
+z-index: -1000;
+font-family: 'Montserrat', sans-serif;
+width: 1000px;
+}
+
+.dropdown-menu {
+background-color: #235b4e;
+color: white;
+padding: 10px;
+cursor: pointer;
+font-family: 'Montserrat', sans-serif;
+font-weight: bold;
+font-size: 10px;
+
+}
+
+.dropdown-menu option {
+background-color: #235b4e;
+color: white;
+}
+
+.leaflet-bottom.leaflet-left .dropdown {
+position: fixed;
+left: 90%;
+bottom: 82%;
+transform: translate(-50%, 50%);
+z-index: 10;
+}
+

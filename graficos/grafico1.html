@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprovechamiento Todos</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+<script>
+   var data = [
+  {
+    "municipio": "Tizayuca",
+    "v2020": 53,
+    "aprovechamiento_2020": 40.15151515,
+    "v2021": 119,
+    "aprovechamiento_2021": 90.15151515,
+    "v2022": 106,
+    "aprovechamiento_2022": 93.81
+  },
+  {
+    "municipio": "Mineral de la Reforma",
+    "v2020": 31,
+    "aprovechamiento_2020": 23.48484848,
+    "v2021": 104,
+    "aprovechamiento_2021": 78.78787879,
+    "v2022": 90,
+    "aprovechamiento_2022": 91.84
+  },
+  {
+    "municipio": "Tulancingo de Bravo",
+    "v2020": 64,
+    "aprovechamiento_2020": 48.48484848,
+    "v2021": 74,
+    "aprovechamiento_2021": 56.06060606,
+    "v2022": 87,
+    "aprovechamiento_2022": 78.38
+  },
+  {
+    "municipio": "Zapotlán de Juárez",
+    "v2020": 10,
+    "aprovechamiento_2020": 7.575757576,
+    "v2021": 27,
+    "aprovechamiento_2021": 20.45454545,
+    "v2022": 76,
+    "aprovechamiento_2022": 69.72
+  },
+  {
+    "municipio": "Nicolás Flores",
+    "v2020": 36,
+    "aprovechamiento_2020": 27.27272727,
+    "v2021": 65,
+    "aprovechamiento_2021": 49.24242424,
+    "v2022": 80,
+    "aprovechamiento_2022": 69.57
+  },
+  {
+    "municipio": "Tlahuiltepa",
+    "v2020": 27,
+    "aprovechamiento_2020": 20.45454545,
+    "v2021": 56,
+    "aprovechamiento_2021": 42.42424242,
+    "v2022": 70,
+    "aprovechamiento_2022": 67.96
+  },
+  {
+    "municipio": "Mineral del Monte",
+    "v2020": 97,
+    "aprovechamiento_2020": 73.48484848,
+    "v2021": 80,
+    "aprovechamiento_2021": 60.60606061,
+    "v2022": 73,
+    "aprovechamiento_2022": 66.97
+  },
+  {
+    "municipio": "Juárez Hidalgo",
+    "v2020": 29,
+    "aprovechamiento_2020": 21.96969697,
+    "v2021": 10,
+    "aprovechamiento_2021": 7.575757576,
+    "v2022": 77,
+    "aprovechamiento_2022": 66.96
+  },
+  {
+    "municipio": "Pachuca de Soto",
+    "v2020": 48,
+    "aprovechamiento_2020": 36.36363636,
+    "v2021": 64,
+    "aprovechamiento_2021": 48.48484848,
+    "v2022": 70,
+    "aprovechamiento_2022": 66.67
+  },
+  {
+    "municipio": "Tlanchinol",
+    "v2020": 48,
+    "aprovechamiento_2020": 36.36363636,
+    "v2021": 18,
+    "aprovechamiento_2021": 13.63636364,
+    "v2022": 72,
+    "aprovechamiento_2022": 66.67
+  },
+  {
+    "municipio": "Huichapan",
+    "v2020": 66,
+    "aprovechamiento_2020": 50,
+    "v2021": 70,
+    "aprovechamiento_2021": 53.03030303,
+    "v2022": 75,
+    "aprovechamiento_2022": 66.37
+  },
+  {
+    "municipio": "Huehuetla",
+    "v2020": 20,
+    "aprovechamiento_2020": 15.15151515,
+    "v2021": 11,
+    "aprovechamiento_2021": 8.333333333,
+    "v2022": 68,
+    "aprovechamiento_2022": 64.76
+  },
+  {
+    "municipio": "San Felipe Orizatlán",
+    "v2020": 34,
+    "aprovechamiento_2020": 25.75757576,
+    "v2021": 24,
+    "aprovechamiento_2021": 18.18181818,
+    "v2022": 73,
+    "aprovechamiento_2022": 63.48
+  },
+  {
+    "municipio": "Huejutla de Reyes",
+    "v2020": 38,
+    "aprovechamiento_2020": 28.78787879,
+    "v2021": 51,
+    "aprovechamiento_2021": 38.63636364,
+    "v2022": 67,
+    "aprovechamiento_2022": 60.91
+  },
+  {
+    "municipio": "Almoloya",
+    "v2020": 80,
+    "aprovechamiento_2020": 60.60606061,
+    "v2021": 63,
+    "aprovechamiento_2021": 47.72727273,
+    "v2022": 70,
+    "aprovechamiento_2022": 60.87
+  },
+  {
+    "municipio": "Tula de Allende",
+    "v2020": 80,
+    "aprovechamiento_2020": 60.60606061,
+    "v2021": 58,
+    "aprovechamiento_2021": 43.93939394,
+    "v2022": 63,
+    "aprovechamiento_2022": 55.75
+  },
+  {
+    "municipio": "Epazoyucan",
+    "v2020": 74,
+    "aprovechamiento_2020": 56.06060606,
+    "v2021": 44,
+    "aprovechamiento_2021": 33.33333333,
+    "v2022": 59,
+    "aprovechamiento_2022": 55.66
+  },
+  {
+    "municipio": "Tenango de Doria",
+    "v2020": 21,
+    "aprovechamiento_2020": 15.90909091,
+    "v2021": 12,
+    "aprovechamiento_2021": 9.090909091,
+    "v2022": 56,
+    "aprovechamiento_2022": 53.33
+  },
+  {
+    "municipio": "Villa de Tezontepec",
+    "v2020": 24,
+    "aprovechamiento_2020": 18.18181818,
+    "v2021": 15,
+    "aprovechamiento_2021": 11.36363636,
+    "v2022": 61,
+    "aprovechamiento_2022": 53.04
+  },
+  {
+    "municipio": "Zacualtipán de Ángeles",
+    "v2020": 24,
+    "aprovechamiento_2020": 18.18181818,
+    "v2021": 106,
+    "aprovechamiento_2021": 80.3030303,
+    "v2022": 59,
+    "aprovechamiento_2022": 52.68
+  },
+  {
+    "municipio": "Zimapán",
+    "v2020": 70,
+    "aprovechamiento_2020": 53.03030303,
+    "v2021": 81,
+    "aprovechamiento_2021": 61.36363636,
+    "v2022": 54,
+    "aprovechamiento_2022": 50.94
+  },
+  {
+    "municipio": "Singuilucan",
+    "v2020": 30,
+    "aprovechamiento_2020": 22.72727273,
+    "v2021": 16,
+    "aprovechamiento_2021": 12.12121212,
+    "v2022": 52,
+    "aprovechamiento_2022": 50.49
+  },
+  {
+    "municipio": "San Salvador",
+    "v2020": 21,
+    "aprovechamiento_2020": 15.90909091,
+    "v2021": 16,
+    "aprovechamiento_2021": 12.12121212,
+    "v2022": 53,
+    "aprovechamiento_2022": 50.48
+  },
+  {
+    "municipio": "San Bartolo Tutotepec",
+    "v2020": 25,
+    "aprovechamiento_2020": 18.93939394,
+    "v2021": 50,
+    "aprovechamiento_2021": 37.87878788,
+    "v2022": 53,
+    "aprovechamiento_2022": 49.53
+  },
+  {
+    "municipio": "Huautla",
+    "v2020": 16,
+    "aprovechamiento_2020": 12.12121212,
+    "v2021": 15,
+    "aprovechamiento_2021": 11.36363636,
+    "v2022": 49,
+    "aprovechamiento_2022": 45.37
+  },
+  {
+    "municipio": "Metztitlán",
+    "v2020": 5,
+    "aprovechamiento_2020": 3.787878788,
+    "v2021": 15,
+    "aprovechamiento_2021": 11.36363636,
+    "v2022": 48,
+    "aprovechamiento_2022": 45.28
+  },
+  {
+    "municipio": "Francisco I. Madero",
+    "v2020": 4,
+    "aprovechamiento_2020": 3.03030303,
+    "v2021": 15,
+    "aprovechamiento_2021": 11.36363636,
+    "v2022": 49,
+    "aprovechamiento_2022": 44.95
+  },
+  {
+    "municipio": "Zempoala",
+    "v2020": 69,
+    "aprovechamiento_2020": 52.27272727,
+    "v2021": 34,
+    "aprovechamiento_2021": 25.75757576,
+    "v2022": 49,
+    "aprovechamiento_2022": 43.75
+  },
+  {
+    "municipio": "Pacula",
+    "v2020": 4,
+    "aprovechamiento_2020": 3.03030303,
+    "v2021": 31,
+    "aprovechamiento_2021": 23.48484848,
+    "v2022": 46,
+    "aprovechamiento_2022": 43.4
+  },
+  {
+    "municipio": "Progreso de Obregón",
+    "v2020": 107,
+    "aprovechamiento_2020": 81.06060606,
+    "v2021": 24,
+    "aprovechamiento_2021": 18.18181818,
+    "v2022": 45,
+    "aprovechamiento_2022": 42.45
+  },
+  {
+    "municipio": "Santiago de Anaya",
+    "v2020": 17,
+    "aprovechamiento_2020": 12.87878788,
+    "v2021": 27,
+    "aprovechamiento_2021": 20.45454545,
+    "v2022": 47,
+    "aprovechamiento_2022": 40.87
+  },
+  {
+    "municipio": "Santiago Tulantepec de Lugo Guerrero",
+    "v2020": 10,
+    "aprovechamiento_2020": 7.575757576,
+    "v2021": 5,
+    "aprovechamiento_2021": 3.787878788,
+    "v2022": 39,
+    "aprovechamiento_2022": 40.87
+  },
+  {
+    "municipio": "Tepeapulco",
+    "v2020": 48,
+    "aprovechamiento_2020": 36.36363636,
+    "v2021": 35,
+    "aprovechamiento_2021": 26.51515152,
+    "v2022": 45,
+    "aprovechamiento_2022": 39.13
+  },
+  {
+    "municipio": "Tetepango",
+    "v2020": 51,
+    "aprovechamiento_2020": 38.63636364,
+    "v2021": 34,
+    "aprovechamiento_2021": 25.75757576,
+    "v2022": 45,
+    "aprovechamiento_2022": 39.13
+  },
+  {
+    "municipio": "Tlanalapa",
+    "v2020": 0,
+    "aprovechamiento_2020": 0,
+    "v2021": 6,
+    "aprovechamiento_2021": 4.545454545,
+    "v2022": 44,
+    "aprovechamiento_2022": 38.6
+  },
+  {
+    "municipio": "San Agustín Tlaxiaca",
+    "v2020": 11,
+    "aprovechamiento_2020": 8.333333333,
+    "v2021": 16,
+    "aprovechamiento_2021": 12.12121212,
+    "v2022": 42,
+    "aprovechamiento_2022": 37.5
+  },
+  {
+    "municipio": "Atlapexco",
+    "v2020": 13,
+    "aprovechamiento_2020": 9.848484848,
+    "v2021": 23,
+    "aprovechamiento_2021": 17.42424242,
+    "v2022": 40,
+    "aprovechamiento_2022": 37.04
+  },
+  {
+    "municipio": "Huasca de Ocampo",
+    "v2020": 30,
+    "aprovechamiento_2020": 22.72727273,
+    "v2021": 19,
+    "aprovechamiento_2021": 14.39393939,
+    "v2022": 39,
+    "aprovechamiento_2022": 35.78
+  },
+  {
+    "municipio": "Cuautepec de Hinojosa",
+    "v2020": 54,
+    "aprovechamiento_2020": 40.90909091,
+    "v2021": 26,
+    "aprovechamiento_2021": 19.6969697,
+    "v2022": 41,
+    "aprovechamiento_2022": 35.65
+  },
+  {
+    "municipio": "Huazalingo",
+    "v2020": 60,
+    "aprovechamiento_2020": 45.45454545,
+    "v2021": 11,
+    "aprovechamiento_2021": 8.333333333,
+    "v2022": 38,
+    "aprovechamiento_2022": 34.86
+  },
+  {
+    "municipio": "Tolcayuca",
+    "v2020": 7,
+    "aprovechamiento_2020": 5.303030303,
+    "v2021": 15,
+    "aprovechamiento_2021": 11.36363636,
+    "v2022": 39,
+    "aprovechamiento_2022": 33.91
+  },
+  {
+    "municipio": "Atotonilco el Grande",
+    "v2020": 31,
+    "aprovechamiento_2020": 23.48484848,
+    "v2021": 17,
+    "aprovechamiento_2021": 12.87878788,
+    "v2022": 35,
+    "aprovechamiento_2022": 33.33
+  },
+  {
+    "municipio": "Tlaxcoapan",
+    "v2020": 7,
+    "aprovechamiento_2020": 5.303030303,
+    "v2021": 24,
+    "aprovechamiento_2021": 18.18181818,
+    "v2022": 36,
+    "aprovechamiento_2022": 33.33
+  },
+  {
+    "municipio": "Actopan",
+    "v2020": 45,
+    "aprovechamiento_2020": 34.09090909,
+    "v2021": 34,
+    "aprovechamiento_2021": 25.75757576,
+    "v2022": 34,
+    "aprovechamiento_2022": 32.38
+  },
+  {
+    "municipio": "Mineral del Chico",
+    "v2020": 4,
+    "aprovechamiento_2020": 3.03030303,
+    "v2021": 47,
+    "aprovechamiento_2021": 35.60606061,
+    "v2022": 35,
+    "aprovechamiento_2022": 31.82
+  },
+  {
+    "municipio": "Tepeji del Río de Ocampo",
+    "v2020": 63,
+    "aprovechamiento_2020": 47.72727273,
+    "v2021": 38,
+    "aprovechamiento_2021": 28.78787879,
+    "v2022": 35,
+    "aprovechamiento_2022": 30.97
+  },
+  {
+    "municipio": "Tepehuacán de Guerrero",
+    "v2020": 18,
+    "aprovechamiento_2020": 13.63636364,
+    "v2021": 19,
+    "aprovechamiento_2021": 14.39393939,
+    "v2022": 33,
+    "aprovechamiento_2022": 30.56
+  },
+  {
+    "municipio": "Apan",
+    "v2020": 30,
+    "aprovechamiento_2020": 22.72727273,
+    "v2021": 56,
+    "aprovechamiento_2021": 42.42424242,
+    "v2022": 31,
+    "aprovechamiento_2022": 30.39
+  },
+  {
+    "municipio": "Omitlán de Juárez",
+    "v2020": 16,
+    "aprovechamiento_2020": 12.12121212,
+    "v2021": 55,
+    "aprovechamiento_2021": 41.66666667,
+    "v2022": 32,
+    "aprovechamiento_2022": 30.19
+  },
+  {
+    "municipio": "Acaxochitlán",
+    "v2020": 93,
+    "aprovechamiento_2020": 70.45454545,
+    "v2021": 108,
+    "aprovechamiento_2021": 81.81818182,
+    "v2022": 32,
+    "aprovechamiento_2022": 27.83
+  },
+  {
+    "municipio": "Cardonal",
+    "v2020": 25,
+    "aprovechamiento_2020": 18.93939394,
+    "v2021": 19,
+    "aprovechamiento_2021": 14.39393939,
+    "v2022": 27,
+    "aprovechamiento_2022": 26.73
+  },
+  {
+    "municipio": "Calnali",
+    "v2020": 24,
+    "aprovechamiento_2020": 18.18181818,
+    "v2021": 8,
+    "aprovechamiento_2021": 6.060606061,
+    "v2022": 28,
+    "aprovechamiento_2022": 25.93
+  },
+  {
+    "municipio": "Nopala de Villagrán",
+    "v2020": 66,
+    "aprovechamiento_2020": 50,
+    "v2021": 28,
+    "aprovechamiento_2021": 21.21212121,
+    "v2022": 27,
+    "aprovechamiento_2022": 25.47
+  },
+  {
+    "municipio": "Pisaflores",
+    "v2020": 14,
+    "aprovechamiento_2020": 10.60606061,
+    "v2021": 19,
+    "aprovechamiento_2021": 14.39393939,
+    "v2022": 27,
+    "aprovechamiento_2022": 25.47
+  },
+  {
+    "municipio": "Jaltocán",
+    "v2020": 43,
+    "aprovechamiento_2020": 32.57575758,
+    "v2021": 27,
+    "aprovechamiento_2021": 20.45454545,
+    "v2022": 29,
+    "aprovechamiento_2022": 25.22
+  },
+  {
+    "municipio": "Atitalaquia",
+    "v2020": 97,
+    "aprovechamiento_2020": 73.48484848,
+    "v2021": 22,
+    "aprovechamiento_2021": 16.66666667,
+    "v2022": 28,
+    "aprovechamiento_2022": 24.78
+  },
+  {
+    "municipio": "Metepec",
+    "v2020": 8,
+    "aprovechamiento_2020": 6.060606061,
+    "v2021": 16,
+    "aprovechamiento_2021": 12.12121212,
+    "v2022": 27,
+    "aprovechamiento_2022": 23.48
+  },
+  {
+    "municipio": "Yahualica",
+    "v2020": 41,
+    "aprovechamiento_2020": 31.06060606,
+    "v2021": 13,
+    "aprovechamiento_2021": 9.848484848,
+    "v2022": 27,
+    "aprovechamiento_2022": 23.48
+  },
+  {
+    "municipio": "Ixmiquilpan",
+    "v2020": 21,
+    "aprovechamiento_2020": 15.90909091,
+    "v2021": 7,
+    "aprovechamiento_2021": 5.303030303,
+    "v2022": 22,
+    "aprovechamiento_2022": 23.16
+  },
+  {
+    "municipio": "Chapulhuacán",
+    "v2020": 6,
+    "aprovechamiento_2020": 4.545454545,
+    "v2021": 0,
+    "aprovechamiento_2021": 0,
+    "v2022": 25,
+    "aprovechamiento_2022": 21.74
+  },
+  {
+    "municipio": "Emiliano Zapata",
+    "v2020": 28,
+    "aprovechamiento_2020": 21.21212121,
+    "v2021": 3,
+    "aprovechamiento_2021": 2.272727273,
+    "v2022": 22,
+    "aprovechamiento_2022": 20.75
+  },
+  {
+    "municipio": "Agua Blanca de Iturbide",
+    "v2020": 18,
+    "aprovechamiento_2020": 13.63636364,
+    "v2021": 12,
+    "aprovechamiento_2021": 9.090909091,
+    "v2022": 23,
+    "aprovechamiento_2022": 20.35
+  },
+  {
+    "municipio": "Chapantongo",
+    "v2020": 48,
+    "aprovechamiento_2020": 36.36363636,
+    "v2021": 26,
+    "aprovechamiento_2021": 19.6969697,
+    "v2022": 20,
+    "aprovechamiento_2022": 19.8
+  },
+  {
+    "municipio": "Tepetitlán",
+    "v2020": 36,
+    "aprovechamiento_2020": 27.27272727,
+    "v2021": 27,
+    "aprovechamiento_2021": 20.45454545,
+    "v2022": 22,
+    "aprovechamiento_2022": 19.13
+  },
+  {
+    "municipio": "Ajacuba",
+    "v2020": 35,
+    "aprovechamiento_2020": 26.51515152,
+    "v2021": 5,
+    "aprovechamiento_2021": 3.787878788,
+    "v2022": 21,
+    "aprovechamiento_2022": 19.09
+  },
+  {
+    "municipio": "Xochicoatlán",
+    "v2020": 15,
+    "aprovechamiento_2020": 11.36363636,
+    "v2021": 15,
+    "aprovechamiento_2021": 11.36363636,
+    "v2022": 20,
+    "aprovechamiento_2022": 19.05
+  },
+  {
+    "municipio": "Tasquillo",
+    "v2020": 44,
+    "aprovechamiento_2020": 33.33333333,
+    "v2021": 30,
+    "aprovechamiento_2021": 22.72727273,
+    "v2022": 18,
+    "aprovechamiento_2022": 16.07
+  },
+  {
+    "municipio": "Atotonilco de Tula",
+    "v2020": 27,
+    "aprovechamiento_2020": 20.45454545,
+    "v2021": 10,
+    "aprovechamiento_2021": 7.575757576,
+    "v2022": 18,
+    "aprovechamiento_2022": 15.79
+  },
+  {
+    "municipio": "Acatlán",
+    "v2020": 77,
+    "aprovechamiento_2020": 58.33333333,
+    "v2021": 2,
+    "aprovechamiento_2021": 1.515151515,
+    "v2022": 18,
+    "aprovechamiento_2022": 15.65
+  },
+  {
+    "municipio": "San Agustín Metzquititlán",
+    "v2020": 31,
+    "aprovechamiento_2020": 23.48484848,
+    "v2021": 36,
+    "aprovechamiento_2021": 27.27272727,
+    "v2022": 18,
+    "aprovechamiento_2022": 15.65
+  },
+  {
+    "municipio": "Lolotla",
+    "v2020": 41,
+    "aprovechamiento_2020": 31.06060606,
+    "v2021": 9,
+    "aprovechamiento_2021": 6.818181818,
+    "v2022": 15,
+    "aprovechamiento_2022": 14.29
+  },
+  {
+    "municipio": "Tianguistengo",
+    "v2020": 24,
+    "aprovechamiento_2020": 18.18181818,
+    "v2021": 1,
+    "aprovechamiento_2021": 0.757575758,
+    "v2022": 16,
+    "aprovechamiento_2022": 13.91
+  },
+  {
+    "municipio": "Jacala de Ledezma",
+    "v2020": 9,
+    "aprovechamiento_2020": 6.818181818,
+    "v2021": 3,
+    "aprovechamiento_2021": 2.272727273,
+    "v2022": 15,
+    "aprovechamiento_2022": 13.27
+  },
+  {
+    "municipio": "Molango de Escamilla",
+    "v2020": 39,
+    "aprovechamiento_2020": 29.54545455,
+    "v2021": 25,
+    "aprovechamiento_2021": 18.93939394,
+    "v2022": 15,
+    "aprovechamiento_2022": 13.04
+  },
+  {
+    "municipio": "La Misión",
+    "v2020": 11,
+    "aprovechamiento_2020": 8.333333333,
+    "v2021": 10,
+    "aprovechamiento_2021": 7.575757576,
+    "v2022": 13,
+    "aprovechamiento_2022": 13
+  },
+  {
+    "municipio": "Xochiatipan",
+    "v2020": 20,
+    "aprovechamiento_2020": 15.15151515,
+    "v2021": 21,
+    "aprovechamiento_2021": 15.90909091,
+    "v2022": 14,
+    "aprovechamiento_2022": 12.96
+  },
+  {
+    "municipio": "Alfajayucan",
+    "v2020": 71,
+    "aprovechamiento_2020": 53.78787879,
+    "v2021": 40,
+    "aprovechamiento_2021": 30.3030303,
+    "v2022": 12,
+    "aprovechamiento_2022": 10.62
+  },
+  {
+    "municipio": "El Arenal",
+    "v2020": 37,
+    "aprovechamiento_2020": 28.03030303,
+    "v2021": 3,
+    "aprovechamiento_2021": 2.272727273,
+    "v2022": 10,
+    "aprovechamiento_2022": 9.8
+  },
+  {
+    "municipio": "Eloxochitlán",
+    "v2020": 37,
+    "aprovechamiento_2020": 28.03030303,
+    "v2021": 19,
+    "aprovechamiento_2021": 14.39393939,
+    "v2022": 9,
+    "aprovechamiento_2022": 8.49
+  },
+  {
+    "municipio": "Chilcuautla",
+    "v2020": 62,
+    "aprovechamiento_2020": 46.96969697,
+    "v2021": 19,
+    "aprovechamiento_2021": 14.39393939,
+    "v2022": 3,
+    "aprovechamiento_2022": 2.61
+  },
+  {
+    "municipio": "Tezontepec de Aldama",
+    "v2020": 12,
+    "aprovechamiento_2020": 9.090909091,
+    "v2021": 0,
+    "aprovechamiento_2021": 0,
+    "v2022": 2,
+    "aprovechamiento_2022": 1.74
+  },
+  {
+    "municipio": "Mixquiahuala de Juárez",
+    "v2020": 17,
+    "aprovechamiento_2020": 12.87878788,
+    "v2021": 2,
+    "aprovechamiento_2021": 1.515151515,
+    "v2022": 1,
+    "aprovechamiento_2022": 0.95
+  },
+  {
+    "municipio": "Tlahuelilpan",
+    "v2020": 15,
+    "aprovechamiento_2020": 11.36363636,
+    "v2021": 3,
+    "aprovechamiento_2021": 2.272727273,
+    "v2022": 1,
+    "aprovechamiento_2022": 0.88
+  },
+  {
+    "municipio": "Tecozautla",
+    "v2020": 48,
+    "aprovechamiento_2020": 36.36363636,
+    "v2021": 5,
+    "aprovechamiento_2021": 3.787878788,
+    "v2022": 0,
+    "aprovechamiento_2022": 0
+  }
+]
+</script>
+    <script>
+       
+       var municipios = data.map(item => item.municipio);
+var aprovechamiento2020 = data.map(item => item.aprovechamiento_2020);
+var aprovechamiento2021 = data.map(item => item.aprovechamiento_2021);
+var aprovechamiento2022 = data.map(item => item.aprovechamiento_2022);
+
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            
+            data: {
+                labels: municipios,
+                datasets: [
+                    
+                    {   type: 'bar',
+                        label: '2020',
+                        data: aprovechamiento2020,
+                        backgroundColor: '#ddc9a3',
+                        borderColor: 'white',
+                        borderWidth: 1,
+                        barThickness: 10,
+                    },
+                    {   type: 'bar',
+                        label: '2021',
+                        data: aprovechamiento2021,
+                        backgroundColor: '#235b4e',
+                        borderColor: 'white',
+                        borderWidth: 1,
+                        barThickness: 10,
+                    },
+                    {   type: 'bar',
+                        label: '2022',
+                        data: aprovechamiento2022,
+                        backgroundColor: '#9f2241',
+                        borderColor: 'white',
+                        borderWidth: 1,
+                        barThickness: 10,
+                    }
+                ]
+            },
+            options: { 
+              aspectRatio: 0.3,
+    indexAxis: 'y',
+    responsive: true,
+    plugins: {
+      
+      title: {
+        display: false,
+        text: 'Chart.js Horizontal Bar Chart'
+      }
+    }
+  }
+        });
+    </script>
+
+</body>
+</html>

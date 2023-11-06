@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Work+Sans:wght@300&display=swap" rel="stylesheet">
+    <title>Sistema de indicadores INDEMUN</title>
+    <style>
+      
+        /* funcionamiento básico del sistema de pestañas */
+.tab-content {
+  display: none;
+}
+
+.tab:target .tab-content, .tab:last-of-type .tab-content {
+  display: block;
+}
+
+.tab:target ~ .tab:last-of-type .tab-content {
+  display: none;
+}
+/* parámetros para configurar las pestañas */
+:root {
+  --tabs-border-color: #235b4e;
+  --tabs-border-color2: #9f2241;
+  --tabs-border-size: 3px;
+  --tabs-border-size2: 1px;
+  --tabs-text-color: black;
+  --tabs-dark-color: white;
+  --tabs-lite-color: #ddc9a360;
+  --tabs-width: 20%;
+  --tabs-height: 40px;
+}
+
+/* aspecto básico */
+body {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: bold;
+  line-height: 1.2;
+}
+h2, p {
+  margin: 0;
+} 
+a {
+  color: inherit;
+  text-decoration: none;
+} 
+.tabs * {
+  box-sizing: border-box;
+  
+}
+/* esto es para posicionar las pestañas correctamente */
+.tab-container {
+  position: relative;
+  padding-top: var(--tabs-height); /* en esta zona colocaremos las pestañas */
+  
+} 
+#tab1>a { --tabs-position: 0; }
+#tab2>a { --tabs-position: 1; }
+#tab3>a { --tabs-position: 2; }
+#tab4>a { --tabs-position: 3; }
+#tab5>a { --tabs-position: 4; }
+#tab6>a { --tabs-position: 5; }
+#tab7>a { --tabs-position: 6; }
+#tab8>a { --tabs-position: 7; }
+#tab9>a { --tabs-position: 8; }
+.tab>a {
+  text-align: center;
+  position: absolute;
+  width: calc(var(--tabs-width));
+  height: calc(var(--tabs-height) + var(--tabs-border-size)); 
+  top: 0;
+  left: calc(var(--tabs-width) * var(--tabs-position)); /* posición de cada pestaña */
+}
+/* más aspecto */
+.tabs { 
+  padding: 10px;
+  color: var(--tabs-text-color);
+  
+}
+.tab-content {
+  background-color: var(--tabs-lite-color); 
+  padding: 20px;
+  border: var(--tabs-border-size) solid var(--tabs-border-color);
+  border-radius: 0 0 10px 10px;
+  position: relative;
+  z-index: 100;
+  
+}
+.tab>a {
+  background-color: var(--tabs-dark-color); 
+  padding: 10px;
+  border: var(--tabs-border-size) solid var(--tabs-border-color);
+  border-radius: 10px 10px 0 0;
+  border-bottom: 0;
+ 
+}
+.tab:target>a, .tab:last-of-type>a {
+  background-color: var(--tabs-lite-color); 
+  z-index: 200;
+  border: var(--tabs-border-size) solid var(--tabs-border-color);
+}
+.tab:target ~ .tab:last-of-type>a {
+  background-color: var(--tabs-dark-color); 
+  z-index: 0; 
+  border: var(--tabs-border-size) solid var(--tabs-border-color);
+}
+.tab-content iframe {
+  width: 100%;
+  height: 90%;
+}
+.tab-content {
+  position: relative;
+  height: 93vh;
+}
+
+.tab-content iframe {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.tab-content {
+  position: relative;
+  height: 93vh;
+}
+
+.tab-content .half-iframe1 {
+  position: relative;
+  width: 100%;
+  height: 70%;
+  top: 0;
+  left: 0;
+}
+.tab-content .half-iframe2 {
+  position: absolute;
+  width: 100%;
+  height: 30%;
+  top: 0;
+  left: 0;
+}
+
+.tab-content iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.tab a {
+  display: flex;
+  align-items: center;
+}
+
+.tab-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  background-image: url('img/censo.png');
+  background-size: cover;
+}
+.tab-icon1 {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  background-image: url('img/salud1.png');
+  background-size: cover;
+}
+.tab-icon2 {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  background-image: url('img/mapa.png');
+  background-size: cover;
+}
+.tab-icon3 {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  background-image: url('img/ambiente.png');
+  background-size: cover;
+}
+
+.dropdown-container {
+    width: 200px;
+    margin: 0 auto;
+}
+
+.dropdown-menu {
+    width: 100%;
+    height: 40px;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url('flecha_desplegable.png') 95% / 15% no-repeat #fff; /* Cambia 'flecha_desplegable.png' por la imagen de flecha que quieras usar */
+}
+
+.dropdown-menu option {
+    padding: 10px;
+}
+.fullscreen-cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(img/bienvenida.png) center center/contain no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: contain;
+    z-index: 999;
+    opacity: 0.7;
+}
+
+
+.cover-content {
+    color: #fff;
+    text-align: center;
+}
+
+/* para hacer que el cuerpo sea no desplazable cuando se muestra la cubierta */
+body.fullscreen-cover-active {
+    overflow: hidden;
+}
+.centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Esto se usa para hacer que el div ocupe toda la altura de la pantalla. */
+  text-align: center; /* Esto se usa para centrar el texto de los elementos h1. */
+}
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 76px;
+    font-weight: bold;
+    color: #9f2241;
+    cursor: pointer;
+}
+
+
+    </style>
+</head>
+<body>
+  
+  <div class="fullscreen-cover">
+    <div class="cover-content">
+        <span class="close-btn">&times;</span>
+    </div>
+  </div>
+
+
+  <div class="dropdown-container">
+    <select class="dropdown-menu">
+        <option value="">Selecciona un módulo</option>
+        <option value="modulo1">Módulo 1 | Organización</option>
+        <option value="modulo2">Módulo 2 | Hacienda</option>
+        <option value="modulo2">Módulo 3 | Gestión del territorio</option>
+        <option value="modulo2">Módulo 4 | Servicios Públicos</option>
+        <option value="modulo2">Módulo 5 | Medio Ambiente</option>
+        <option value="modulo2">Módulo 6 | Desarrollo Social/option>
+        <option value="modulo2">Módulo 7 | Desarrollo Económico</option>
+        <option value="modulo8">Módulo 8 | Gobierno Abierto</option>
+    </select>
+</div>
+    <div class="tabs">
+        <div class="tab-container">
+          <div id="tab4" class="tab"> 
+            <a href="#tab4">1.4 Capacitación</a>
+            <div class="tab-content">
+              <object class="half-iframe" width="100%" height="100%" data="capacitacion.html" frameborder="0" style="border:0"></object>
+            </div>
+          </div>
+          <div id="tab3" class="tab"> 
+            <a href="#tab3">1.3 Contraloría</a>
+            <div class="tab-content">
+              <object class="half-iframe" width="100%" height="100%" data="contraloria.html" frameborder="0" style="border:0"></object>
+            </div>
+          </div>
+          <div id="tab2" class="tab">
+            <a href="#tab2"></span>1.2 Planeación</a>
+            <div class="tab-content">
+              <object class="half-iframe" width="100%" height="100%" data="planeacion.html" frameborder="0" style="border:0"></object>
+            </div>
+            
+          </div> 
+          <div id="tab1" class="tab">
+            <a href="#tab1">1.1 Estructura</a>
+            <div class="tab-content">
+              <object class="half-iframe" width="100%" height="100%" data="estructura.html" frameborder="0" style="border:0"></object>
+            </div>
+          </div>
+          </div> 
+        </div>
+      </div>
+      <script>
+        
+// Obtén el botón de cierre
+var closeButton = document.querySelector('.close-btn');
+
+// Cuando se hace clic en el botón de cierre, cierra la ventana de bienvenida
+closeButton.onclick = function() {
+    document.querySelector('.fullscreen-cover').style.display = "none";
+}
+
+      </script>
+</body>
+</html>

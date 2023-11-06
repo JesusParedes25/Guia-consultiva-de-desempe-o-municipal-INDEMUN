@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprovechamiento Todos</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
+
+        <style>
+
+        </style>
+</head>
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+<script>
+  var data = [
+  {
+    "municipio": "Acatl\u00e1n",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 58.33333333
+      },
+      {
+        "year": 2021,
+        "value": 1.515151515
+      },
+      {
+        "year": 2022,
+        "value": 15.65
+      }
+    ]
+  },
+  {
+    "municipio": "Acaxochitl\u00e1n",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 70.45454545
+      },
+      {
+        "year": 2021,
+        "value": 81.81818182
+      },
+      {
+        "year": 2022,
+        "value": 27.83
+      }
+    ]
+  },
+  {
+    "municipio": "Actopan",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 34.09090909
+      },
+      {
+        "year": 2021,
+        "value": 25.75757576
+      },
+      {
+        "year": 2022,
+        "value": 32.38
+      }
+    ]
+  },
+  {
+    "municipio": "Agua Blanca de Iturbide",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 13.63636364
+      },
+      {
+        "year": 2021,
+        "value": 9.090909091
+      },
+      {
+        "year": 2022,
+        "value": 20.35
+      }
+    ]
+  },
+  {
+    "municipio": "Ajacuba",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 26.51515152
+      },
+      {
+        "year": 2021,
+        "value": 3.787878788
+      },
+      {
+        "year": 2022,
+        "value": 19.09
+      }
+    ]
+  },
+  {
+    "municipio": "Alfajayucan",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 53.78787879
+      },
+      {
+        "year": 2021,
+        "value": 30.3030303
+      },
+      {
+        "year": 2022,
+        "value": 10.62
+      }
+    ]
+  },
+  {
+    "municipio": "Almoloya",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 60.60606061
+      },
+      {
+        "year": 2021,
+        "value": 47.72727273
+      },
+      {
+        "year": 2022,
+        "value": 60.87
+      }
+    ]
+  },
+  {
+    "municipio": "Apan",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 22.72727273
+      },
+      {
+        "year": 2021,
+        "value": 42.42424242
+      },
+      {
+        "year": 2022,
+        "value": 30.39
+      }
+    ]
+  },
+  {
+    "municipio": "Atitalaquia",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 73.48484848
+      },
+      {
+        "year": 2021,
+        "value": 16.66666667
+      },
+      {
+        "year": 2022,
+        "value": 24.78
+      }
+    ]
+  },
+  {
+    "municipio": "Atlapexco",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 9.848484848
+      },
+      {
+        "year": 2021,
+        "value": 17.42424242
+      },
+      {
+        "year": 2022,
+        "value": 37.04
+      }
+    ]
+  },
+  {
+    "municipio": "Atotonilco de Tula",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 20.45454545
+      },
+      {
+        "year": 2021,
+        "value": 7.575757576
+      },
+      {
+        "year": 2022,
+        "value": 15.79
+      }
+    ]
+  },
+  {
+    "municipio": "Atotonilco el Grande",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 23.48484848
+      },
+      {
+        "year": 2021,
+        "value": 12.87878788
+      },
+      {
+        "year": 2022,
+        "value": 33.33
+      }
+    ]
+  },
+  {
+    "municipio": "Calnali",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 18.18181818
+      },
+      {
+        "year": 2021,
+        "value": 6.060606061
+      },
+      {
+        "year": 2022,
+        "value": 25.93
+      }
+    ]
+  },
+  {
+    "municipio": "Cardonal",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 18.93939394
+      },
+      {
+        "year": 2021,
+        "value": 14.39393939
+      },
+      {
+        "year": 2022,
+        "value": 26.73
+      }
+    ]
+  },
+  {
+    "municipio": "Chapantongo",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 36.36363636
+      },
+      {
+        "year": 2021,
+        "value": 19.6969697
+      },
+      {
+        "year": 2022,
+        "value": 19.8
+      }
+    ]
+  },
+  {
+    "municipio": "Chapulhuac\u00e1n",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 4.545454545
+      },
+      {
+        "year": 2021,
+        "value": 0
+      },
+      {
+        "year": 2022,
+        "value": 21.74
+      }
+    ]
+  },
+  {
+    "municipio": "Chilcuautla",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 46.96969697
+      },
+      {
+        "year": 2021,
+        "value": 14.39393939
+      },
+      {
+        "year": 2022,
+        "value": 2.61
+      }
+    ]
+  },
+  {
+    "municipio": "Cuautepec de Hinojosa",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 40.90909091
+      },
+      {
+        "year": 2021,
+        "value": 19.6969697
+      },
+      {
+        "year": 2022,
+        "value": 35.65
+      }
+    ]
+  },
+  {
+    "municipio": "El Arenal",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 28.03030303
+      },
+      {
+        "year": 2021,
+        "value": 2.272727273
+      },
+      {
+        "year": 2022,
+        "value": 9.8
+      }
+    ]
+  },
+  {
+    "municipio": "Eloxochitl\u00e1n",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 28.03030303
+      },
+      {
+        "year": 2021,
+        "value": 14.39393939
+      },
+      {
+        "year": 2022,
+        "value": 8.49
+      }
+    ]
+  },
+  {
+    "municipio": "Emiliano Zapata",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 21.21212121
+      },
+      {
+        "year": 2021,
+        "value": 2.272727273
+      },
+      {
+        "year": 2022,
+        "value": 20.75
+      }
+    ]
+  },
+  {
+    "municipio": "Epazoyucan",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 56.06060606
+      },
+      {
+        "year": 2021,
+        "value": 33.33333333
+      },
+      {
+        "year": 2022,
+        "value": 55.66
+      }
+    ]
+  },
+  {
+    "municipio": "Francisco I. Madero",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 3.03030303
+      },
+      {
+        "year": 2021,
+        "value": 11.36363636
+      },
+      {
+        "year": 2022,
+        "value": 44.95
+      }
+    ]
+  },
+  {
+    "municipio": "Huasca de Ocampo",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 22.72727273
+      },
+      {
+        "year": 2021,
+        "value": 14.39393939
+      },
+      {
+        "year": 2022,
+        "value": 35.78
+      }
+    ]
+  },
+  {
+    "municipio": "Huautla",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 12.12121212
+      },
+      {
+        "year": 2021,
+        "value": 11.36363636
+      },
+      {
+        "year": 2022,
+        "value": 45.37
+      }
+    ]
+  },
+  {
+    "municipio": "Huazalingo",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 45.45454545
+      },
+      {
+        "year": 2021,
+        "value": 8.333333333
+      },
+      {
+        "year": 2022,
+        "value": 34.86
+      }
+    ]
+  },
+  {
+    "municipio": "Huehuetla",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 15.15151515
+      },
+      {
+        "year": 2021,
+        "value": 8.333333333
+      },
+      {
+        "year": 2022,
+        "value": 64.76
+      }
+    ]
+  },
+  {
+    "municipio": "Huejutla de Reyes",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 28.78787879
+      },
+      {
+        "year": 2021,
+        "value": 38.63636364
+      },
+      {
+        "year": 2022,
+        "value": 60.91
+      }
+    ]
+  },
+  {
+    "municipio": "Huichapan",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 50
+      },
+      {
+        "year": 2021,
+        "value": 53.03030303
+      },
+      {
+        "year": 2022,
+        "value": 66.37
+      }
+    ]
+  },
+  {
+    "municipio": "Ixmiquilpan",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 15.90909091
+      },
+      {
+        "year": 2021,
+        "value": 5.303030303
+      },
+      {
+        "year": 2022,
+        "value": 23.16
+      }
+    ]
+  },
+  {
+    "municipio": "Jacala de Ledezma",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 6.818181818
+      },
+      {
+        "year": 2021,
+        "value": 2.272727273
+      },
+      {
+        "year": 2022,
+        "value": 13.27
+      }
+    ]
+  },
+  {
+    "municipio": "Jaltoc\u00e1n",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 32.57575758
+      },
+      {
+        "year": 2021,
+        "value": 20.45454545
+      },
+      {
+        "year": 2022,
+        "value": 25.22
+      }
+    ]
+  },
+  {
+    "municipio": "Ju\u00e1rez Hidalgo",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 21.96969697
+      },
+      {
+        "year": 2021,
+        "value": 7.575757576
+      },
+      {
+        "year": 2022,
+        "value": 66.96
+      }
+    ]
+  },
+  {
+    "municipio": "La Misi\u00f3n",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 8.333333333
+      },
+      {
+        "year": 2021,
+        "value": 7.575757576
+      },
+      {
+        "year": 2022,
+        "value": 13
+      }
+    ]
+  },
+  {
+    "municipio": "Lolotla",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 31.06060606
+      },
+      {
+        "year": 2021,
+        "value": 6.818181818
+      },
+      {
+        "year": 2022,
+        "value": 14.29
+      }
+    ]
+  },
+  {
+    "municipio": "Metepec",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 6.060606061
+      },
+      {
+        "year": 2021,
+        "value": 12.12121212
+      },
+      {
+        "year": 2022,
+        "value": 23.48
+      }
+    ]
+  },
+  {
+    "municipio": "Metztitl\u00e1n",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 3.787878788
+      },
+      {
+        "year": 2021,
+        "value": 11.36363636
+      },
+      {
+        "year": 2022,
+        "value": 45.28
+      }
+    ]
+  },
+  {
+    "municipio": "Mineral de la Reforma",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 23.48484848
+      },
+      {
+        "year": 2021,
+        "value": 78.78787879
+      },
+      {
+        "year": 2022,
+        "value": 91.84
+      }
+    ]
+  },
+  {
+    "municipio": "Mineral del Chico",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 3.03030303
+      },
+      {
+        "year": 2021,
+        "value": 35.60606061
+      },
+      {
+        "year": 2022,
+        "value": 31.82
+      }
+    ]
+  },
+  {
+    "municipio": "Mineral del Monte",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 73.48484848
+      },
+      {
+        "year": 2021,
+        "value": 60.60606061
+      },
+      {
+        "year": 2022,
+        "value": 66.97
+      }
+    ]
+  },
+  {
+    "municipio": "Mixquiahuala de Ju\u00e1rez",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 12.87878788
+      },
+      {
+        "year": 2021,
+        "value": 1.515151515
+      },
+      {
+        "year": 2022,
+        "value": 0.95
+      }
+    ]
+  },
+  {
+    "municipio": "Molango de Escamilla",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 29.54545455
+      },
+      {
+        "year": 2021,
+        "value": 18.93939394
+      },
+      {
+        "year": 2022,
+        "value": 13.04
+      }
+    ]
+  },
+  {
+    "municipio": "Nicol\u00e1s Flores",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 27.27272727
+      },
+      {
+        "year": 2021,
+        "value": 49.24242424
+      },
+      {
+        "year": 2022,
+        "value": 69.57
+      }
+    ]
+  },
+  {
+    "municipio": "Nopala de Villagr\u00e1n",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 50
+      },
+      {
+        "year": 2021,
+        "value": 21.21212121
+      },
+      {
+        "year": 2022,
+        "value": 25.47
+      }
+    ]
+  },
+  {
+    "municipio": "Omitl\u00e1n de Ju\u00e1rez",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 12.12121212
+      },
+      {
+        "year": 2021,
+        "value": 41.66666667
+      },
+      {
+        "year": 2022,
+        "value": 30.19
+      }
+    ]
+  },
+  {
+    "municipio": "Pachuca de Soto",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 36.36363636
+      },
+      {
+        "year": 2021,
+        "value": 48.48484848
+      },
+      {
+        "year": 2022,
+        "value": 66.67
+      }
+    ]
+  },
+  {
+    "municipio": "Pacula",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 3.03030303
+      },
+      {
+        "year": 2021,
+        "value": 23.48484848
+      },
+      {
+        "year": 2022,
+        "value": 43.4
+      }
+    ]
+  },
+  {
+    "municipio": "Pisaflores",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 10.60606061
+      },
+      {
+        "year": 2021,
+        "value": 14.39393939
+      },
+      {
+        "year": 2022,
+        "value": 25.47
+      }
+    ]
+  },
+  {
+    "municipio": "Progreso de Obreg\u00f3n",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 81.06060606
+      },
+      {
+        "year": 2021,
+        "value": 18.18181818
+      },
+      {
+        "year": 2022,
+        "value": 42.45
+      }
+    ]
+  },
+  {
+    "municipio": "San Agust\u00edn Metzquititl\u00e1n",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 23.48484848
+      },
+      {
+        "year": 2021,
+        "value": 27.27272727
+      },
+      {
+        "year": 2022,
+        "value": 15.65
+      }
+    ]
+  },
+  {
+    "municipio": "San Agust\u00edn Tlaxiaca",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 8.333333333
+      },
+      {
+        "year": 2021,
+        "value": 12.12121212
+      },
+      {
+        "year": 2022,
+        "value": 37.5
+      }
+    ]
+  },
+  {
+    "municipio": "San Bartolo Tutotepec",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 18.93939394
+      },
+      {
+        "year": 2021,
+        "value": 37.87878788
+      },
+      {
+        "year": 2022,
+        "value": 49.53
+      }
+    ]
+  },
+  {
+    "municipio": "San Felipe Orizatl\u00e1n",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 25.75757576
+      },
+      {
+        "year": 2021,
+        "value": 18.18181818
+      },
+      {
+        "year": 2022,
+        "value": 63.48
+      }
+    ]
+  },
+  {
+    "municipio": "San Salvador",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 15.90909091
+      },
+      {
+        "year": 2021,
+        "value": 12.12121212
+      },
+      {
+        "year": 2022,
+        "value": 50.48
+      }
+    ]
+  },
+  {
+    "municipio": "Santiago de Anaya",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 12.87878788
+      },
+      {
+        "year": 2021,
+        "value": 20.45454545
+      },
+      {
+        "year": 2022,
+        "value": 40.87
+      }
+    ]
+  },
+  {
+    "municipio": "Santiago Tulantepec de Lugo Guerrero",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 7.575757576
+      },
+      {
+        "year": 2021,
+        "value": 3.787878788
+      },
+      {
+        "year": 2022,
+        "value": 40.87
+      }
+    ]
+  },
+  {
+    "municipio": "Singuilucan",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 22.72727273
+      },
+      {
+        "year": 2021,
+        "value": 12.12121212
+      },
+      {
+        "year": 2022,
+        "value": 50.49
+      }
+    ]
+  },
+  {
+    "municipio": "Tasquillo",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 33.33333333
+      },
+      {
+        "year": 2021,
+        "value": 22.72727273
+      },
+      {
+        "year": 2022,
+        "value": 16.07
+      }
+    ]
+  },
+  {
+    "municipio": "Tecozautla",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 36.36363636
+      },
+      {
+        "year": 2021,
+        "value": 3.787878788
+      },
+      {
+        "year": 2022,
+        "value": 0
+      }
+    ]
+  },
+  {
+    "municipio": "Tenango de Doria",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 15.90909091
+      },
+      {
+        "year": 2021,
+        "value": 9.090909091
+      },
+      {
+        "year": 2022,
+        "value": 53.33
+      }
+    ]
+  },
+  {
+    "municipio": "Tepeapulco",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 36.36363636
+      },
+      {
+        "year": 2021,
+        "value": 26.51515152
+      },
+      {
+        "year": 2022,
+        "value": 39.13
+      }
+    ]
+  },
+  {
+    "municipio": "Tepehuac\u00e1n de Guerrero",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 13.63636364
+      },
+      {
+        "year": 2021,
+        "value": 14.39393939
+      },
+      {
+        "year": 2022,
+        "value": 30.56
+      }
+    ]
+  },
+  {
+    "municipio": "Tepeji del R\u00edo de Ocampo",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 47.72727273
+      },
+      {
+        "year": 2021,
+        "value": 28.78787879
+      },
+      {
+        "year": 2022,
+        "value": 30.97
+      }
+    ]
+  },
+  {
+    "municipio": "Tepetitl\u00e1n",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 27.27272727
+      },
+      {
+        "year": 2021,
+        "value": 20.45454545
+      },
+      {
+        "year": 2022,
+        "value": 19.13
+      }
+    ]
+  },
+  {
+    "municipio": "Tetepango",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 38.63636364
+      },
+      {
+        "year": 2021,
+        "value": 25.75757576
+      },
+      {
+        "year": 2022,
+        "value": 39.13
+      }
+    ]
+  },
+  {
+    "municipio": "Tezontepec de Aldama",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 9.090909091
+      },
+      {
+        "year": 2021,
+        "value": 0
+      },
+      {
+        "year": 2022,
+        "value": 1.74
+      }
+    ]
+  },
+  {
+    "municipio": "Tianguistengo",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 18.18181818
+      },
+      {
+        "year": 2021,
+        "value": 0.757575758
+      },
+      {
+        "year": 2022,
+        "value": 13.91
+      }
+    ]
+  },
+  {
+    "municipio": "Tizayuca",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 40.15151515
+      },
+      {
+        "year": 2021,
+        "value": 90.15151515
+      },
+      {
+        "year": 2022,
+        "value": 93.81
+      }
+    ]
+  },
+  {
+    "municipio": "Tlahuelilpan",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 11.36363636
+      },
+      {
+        "year": 2021,
+        "value": 2.272727273
+      },
+      {
+        "year": 2022,
+        "value": 0.88
+      }
+    ]
+  },
+  {
+    "municipio": "Tlahuiltepa",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 20.45454545
+      },
+      {
+        "year": 2021,
+        "value": 42.42424242
+      },
+      {
+        "year": 2022,
+        "value": 67.96
+      }
+    ]
+  },
+  {
+    "municipio": "Tlanalapa",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 0
+      },
+      {
+        "year": 2021,
+        "value": 4.545454545
+      },
+      {
+        "year": 2022,
+        "value": 38.6
+      }
+    ]
+  },
+  {
+    "municipio": "Tlanchinol",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 36.36363636
+      },
+      {
+        "year": 2021,
+        "value": 13.63636364
+      },
+      {
+        "year": 2022,
+        "value": 66.67
+      }
+    ]
+  },
+  {
+    "municipio": "Tlaxcoapan",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 5.303030303
+      },
+      {
+        "year": 2021,
+        "value": 18.18181818
+      },
+      {
+        "year": 2022,
+        "value": 33.33
+      }
+    ]
+  },
+  {
+    "municipio": "Tolcayuca",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 5.303030303
+      },
+      {
+        "year": 2021,
+        "value": 11.36363636
+      },
+      {
+        "year": 2022,
+        "value": 33.91
+      }
+    ]
+  },
+  {
+    "municipio": "Tula de Allende",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 60.60606061
+      },
+      {
+        "year": 2021,
+        "value": 43.93939394
+      },
+      {
+        "year": 2022,
+        "value": 55.75
+      }
+    ]
+  },
+  {
+    "municipio": "Tulancingo de Bravo",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 48.48484848
+      },
+      {
+        "year": 2021,
+        "value": 56.06060606
+      },
+      {
+        "year": 2022,
+        "value": 78.38
+      }
+    ]
+  },
+  {
+    "municipio": "Villa de Tezontepec",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 18.18181818
+      },
+      {
+        "year": 2021,
+        "value": 11.36363636
+      },
+      {
+        "year": 2022,
+        "value": 53.04
+      }
+    ]
+  },
+  {
+    "municipio": "Xochiatipan",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 15.15151515
+      },
+      {
+        "year": 2021,
+        "value": 15.90909091
+      },
+      {
+        "year": 2022,
+        "value": 12.96
+      }
+    ]
+  },
+  {
+    "municipio": "Xochicoatl\u00e1n",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 11.36363636
+      },
+      {
+        "year": 2021,
+        "value": 11.36363636
+      },
+      {
+        "year": 2022,
+        "value": 19.05
+      }
+    ]
+  },
+  {
+    "municipio": "Yahualica",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 31.06060606
+      },
+      {
+        "year": 2021,
+        "value": 9.848484848
+      },
+      {
+        "year": 2022,
+        "value": 23.48
+      }
+    ]
+  },
+  {
+    "municipio": "Zacualtip\u00e1n de \u00c1ngeles",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 18.18181818
+      },
+      {
+        "year": 2021,
+        "value": 80.3030303
+      },
+      {
+        "year": 2022,
+        "value": 52.68
+      }
+    ]
+  },
+  {
+    "municipio": "Zapotl\u00e1n de Ju\u00e1rez",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 7.575757576
+      },
+      {
+        "year": 2021,
+        "value": 20.45454545
+      },
+      {
+        "year": 2022,
+        "value": 69.72
+      }
+    ]
+  },
+  {
+    "municipio": "Zempoala",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 52.27272727
+      },
+      {
+        "year": 2021,
+        "value": 25.75757576
+      },
+      {
+        "year": 2022,
+        "value": 43.75
+      }
+    ]
+  },
+  {
+    "municipio": "Zimap\u00e1n",
+    "aprovechamiento": [
+      {
+        "year": 2020,
+        "value": 53.03030303
+      },
+      {
+        "year": 2021,
+        "value": 61.36363636
+      },
+      {
+        "year": 2022,
+        "value": 50.94
+      }
+    ]
+  }
+]
+
+// Mapea tus datos a la estructura necesaria para Chart.js
+var datasets = data.map(function(municipio) {
+    return {
+        label: municipio.municipio,
+        data: municipio.aprovechamiento.map(function(point) { return point.value; }),
+        fill: false,
+        borderColor: '#9f2241',  // o cualquier otro color que desees para esta línea
+        borderWidth: 1
+    };
+});
+
+
+var labels = data[0].aprovechamiento.map(function(point) { return point.year; });
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: datasets
+    },
+    options: { 
+        aspectRatio: 3,
+        responsive: true,
+        plugins: {
+            title: {
+                display: false,
+                text: 'Chart.js Line Chart'
+            }
+        }
+    }
+});
+
+    </script>
+
+</body>
+</html>

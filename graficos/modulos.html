@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indicadores Gestión</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+<script>
+   var data = [
+  {
+    "Municipio": "Mineral de la Reforma",
+    "v": 17,
+    "a": 0,
+    "r": 0,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Tenango de Doria",
+    "v": 17,
+    "a": 0,
+    "r": 0,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Tizayuca",
+    "v": 16,
+    "a": 1,
+    "r": 0,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Nicolás Flores",
+    "v": 15,
+    "a": 0,
+    "r": 2,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Tulancingo de Bravo",
+    "v": 15,
+    "a": 1,
+    "r": 1,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Pachuca de Soto",
+    "v": 14,
+    "a": 2,
+    "r": 1,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Almoloya",
+    "v": 13,
+    "a": 2,
+    "r": 2,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Huejutla de Reyes",
+    "v": 13,
+    "a": 3,
+    "r": 1,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Santiago Tulantepec de Lugo Guerrero",
+    "v": 13,
+    "a": 4,
+    "r": 0,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Tlahuiltepa",
+    "v": 13,
+    "a": 1,
+    "r": 3,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Atlapexco",
+    "v": 12,
+    "a": 0,
+    "r": 3,
+    "ndR": 2
+  },
+  {
+    "Municipio": "Francisco I. Madero",
+    "v": 12,
+    "a": 3,
+    "r": 1,
+    "ndR": 1
+  },
+  {
+    "Municipio": "Huehuetla",
+    "v": 12,
+    "a": 0,
+    "r": 3,
+    "ndR": 2
+  },
+  {
+    "Municipio": "Huichapan",
+    "v": 12,
+    "a": 2,
+    "r": 3,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Juárez Hidalgo",
+    "v": 12,
+    "a": 4,
+    "r": 1,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Mineral del Monte",
+    "v": 12,
+    "a": 2,
+    "r": 3,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Pacula",
+    "v": 12,
+    "a": 2,
+    "r": 2,
+    "ndR": 1
+  },
+  {
+    "Municipio": "San Felipe Orizatlán",
+    "v": 12,
+    "a": 3,
+    "r": 2,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Epazoyucan",
+    "v": 11,
+    "a": 3,
+    "r": 3,
+    "ndR": 0
+  },
+  {
+    "Municipio": "San Salvador",
+    "v": 11,
+    "a": 3,
+    "r": 2,
+    "ndR": 1
+  },
+  {
+    "Municipio": "Santiago de Anaya",
+    "v": 11,
+    "a": 3,
+    "r": 1,
+    "ndR": 2
+  },
+  {
+    "Municipio": "Zapotlán de Juárez",
+    "v": 11,
+    "a": 0,
+    "r": 5,
+    "ndR": 1
+  },
+  {
+    "Municipio": "Acaxochitlán",
+    "v": 10,
+    "a": 3,
+    "r": 4,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Atotonilco el Grande",
+    "v": 10,
+    "a": 4,
+    "r": 3,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Nopala de Villagrán",
+    "v": 10,
+    "a": 3,
+    "r": 4,
+    "ndR": 0
+  },
+  {
+    "Municipio": "San Bartolo Tutotepec",
+    "v": 10,
+    "a": 1,
+    "r": 3,
+    "ndR": 3
+  },
+  {
+    "Municipio": "Singuilucan",
+    "v": 10,
+    "a": 1,
+    "r": 5,
+    "ndR": 1
+  },
+  {
+    "Municipio": "Tlanchinol",
+    "v": 10,
+    "a": 5,
+    "r": 2,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Mineral del Chico",
+    "v": 9,
+    "a": 0,
+    "r": 2,
+    "ndR": 6
+  },
+  {
+    "Municipio": "Tepeji del Río de Ocampo",
+    "v": 9,
+    "a": 4,
+    "r": 4,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Zempoala",
+    "v": 9,
+    "a": 5,
+    "r": 3,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Huautla",
+    "v": 8,
+    "a": 6,
+    "r": 3,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Ixmiquilpan",
+    "v": 8,
+    "a": 5,
+    "r": 2,
+    "ndR": 2
+  },
+  {
+    "Municipio": "Progreso de Obregón",
+    "v": 8,
+    "a": 2,
+    "r": 7,
+    "ndR": 0
+  },
+  {
+    "Municipio": "San Agustín Tlaxiaca",
+    "v": 8,
+    "a": 4,
+    "r": 4,
+    "ndR": 1
+  },
+  {
+    "Municipio": "Villa de Tezontepec",
+    "v": 8,
+    "a": 2,
+    "r": 1,
+    "ndR": 6
+  },
+  {
+    "Municipio": "Xochicoatlán",
+    "v": 8,
+    "a": 1,
+    "r": 3,
+    "ndR": 5
+  },
+  {
+    "Municipio": "Zacualtipán de Ángeles",
+    "v": 8,
+    "a": 0,
+    "r": 5,
+    "ndR": 4
+  },
+  {
+    "Municipio": "Actopan",
+    "v": 7,
+    "a": 7,
+    "r": 3,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Huasca de Ocampo",
+    "v": 7,
+    "a": 1,
+    "r": 5,
+    "ndR": 4
+  },
+  {
+    "Municipio": "Huazalingo",
+    "v": 7,
+    "a": 4,
+    "r": 1,
+    "ndR": 5
+  },
+  {
+    "Municipio": "Omitlán de Juárez",
+    "v": 7,
+    "a": 6,
+    "r": 4,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Tula de Allende",
+    "v": 7,
+    "a": 5,
+    "r": 5,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Zimapán",
+    "v": 7,
+    "a": 6,
+    "r": 4,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Chapantongo",
+    "v": 6,
+    "a": 4,
+    "r": 6,
+    "ndR": 1
+  },
+  {
+    "Municipio": "Cuautepec de Hinojosa",
+    "v": 6,
+    "a": 4,
+    "r": 5,
+    "ndR": 2
+  },
+  {
+    "Municipio": "Tepetitlán",
+    "v": 6,
+    "a": 7,
+    "r": 3,
+    "ndR": 1
+  },
+  {
+    "Municipio": "Acatlán",
+    "v": 5,
+    "a": 5,
+    "r": 3,
+    "ndR": 4
+  },
+  {
+    "Municipio": "Alfajayucan",
+    "v": 5,
+    "a": 2,
+    "r": 10,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Cardonal",
+    "v": 5,
+    "a": 4,
+    "r": 6,
+    "ndR": 2
+  },
+  {
+    "Municipio": "Chapulhuacán",
+    "v": 5,
+    "a": 5,
+    "r": 7,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Jacala de Ledezma",
+    "v": 5,
+    "a": 10,
+    "r": 2,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Jaltocán",
+    "v": 5,
+    "a": 8,
+    "r": 3,
+    "ndR": 1
+  },
+  {
+    "Municipio": "Lolotla",
+    "v": 5,
+    "a": 5,
+    "r": 1,
+    "ndR": 6
+  },
+  {
+    "Municipio": "Pisaflores",
+    "v": 5,
+    "a": 6,
+    "r": 5,
+    "ndR": 1
+  },
+  {
+    "Municipio": "Tasquillo",
+    "v": 5,
+    "a": 5,
+    "r": 7,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Tianguistengo",
+    "v": 5,
+    "a": 0,
+    "r": 12,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Tolcayuca",
+    "v": 5,
+    "a": 6,
+    "r": 5,
+    "ndR": 1
+  },
+  {
+    "Municipio": "Apan",
+    "v": 4,
+    "a": 2,
+    "r": 11,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Atotonilco de Tula",
+    "v": 4,
+    "a": 2,
+    "r": 7,
+    "ndR": 4
+  },
+  {
+    "Municipio": "Eloxochitlán",
+    "v": 4,
+    "a": 3,
+    "r": 6,
+    "ndR": 4
+  },
+  {
+    "Municipio": "Metztitlán",
+    "v": 4,
+    "a": 3,
+    "r": 7,
+    "ndR": 3
+  },
+  {
+    "Municipio": "Tepehuacán de Guerrero",
+    "v": 4,
+    "a": 9,
+    "r": 3,
+    "ndR": 1
+  },
+  {
+    "Municipio": "Tlanalapa",
+    "v": 4,
+    "a": 9,
+    "r": 2,
+    "ndR": 2
+  },
+  {
+    "Municipio": "Yahualica",
+    "v": 4,
+    "a": 9,
+    "r": 3,
+    "ndR": 1
+  },
+  {
+    "Municipio": "Calnali",
+    "v": 3,
+    "a": 6,
+    "r": 2,
+    "ndR": 6
+  },
+  {
+    "Municipio": "La Misión",
+    "v": 3,
+    "a": 8,
+    "r": 4,
+    "ndR": 2
+  },
+  {
+    "Municipio": "Metepec",
+    "v": 3,
+    "a": 6,
+    "r": 7,
+    "ndR": 1
+  },
+  {
+    "Municipio": "San Agustín Metzquititlán",
+    "v": 3,
+    "a": 3,
+    "r": 6,
+    "ndR": 5
+  },
+  {
+    "Municipio": "Tetepango",
+    "v": 3,
+    "a": 7,
+    "r": 6,
+    "ndR": 1
+  },
+  {
+    "Municipio": "Xochiatipan",
+    "v": 3,
+    "a": 6,
+    "r": 5,
+    "ndR": 3
+  },
+  {
+    "Municipio": "Ajacuba",
+    "v": 2,
+    "a": 7,
+    "r": 2,
+    "ndR": 6
+  },
+  {
+    "Municipio": "Atitalaquia",
+    "v": 2,
+    "a": 8,
+    "r": 4,
+    "ndR": 3
+  },
+  {
+    "Municipio": "Emiliano Zapata",
+    "v": 2,
+    "a": 7,
+    "r": 8,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Molango de Escamilla",
+    "v": 2,
+    "a": 9,
+    "r": 0,
+    "ndR": 6
+  },
+  {
+    "Municipio": "Tlaxcoapan",
+    "v": 2,
+    "a": 11,
+    "r": 2,
+    "ndR": 2
+  },
+  {
+    "Municipio": "Agua Blanca de Iturbide",
+    "v": 1,
+    "a": 2,
+    "r": 8,
+    "ndR": 6
+  },
+  {
+    "Municipio": "Chilcuautla",
+    "v": 1,
+    "a": 5,
+    "r": 5,
+    "ndR": 6
+  },
+  {
+    "Municipio": "El Arenal",
+    "v": 1,
+    "a": 1,
+    "r": 9,
+    "ndR": 6
+  },
+  {
+    "Municipio": "Tepeapulco",
+    "v": 1,
+    "a": 7,
+    "r": 9,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Mixquiahuala de Juárez",
+    "v": 0,
+    "a": 3,
+    "r": 8,
+    "ndR": 6
+  },
+  {
+    "Municipio": "Tecozautla",
+    "v": 0,
+    "a": 2,
+    "r": 15,
+    "ndR": 0
+  },
+  {
+    "Municipio": "Tezontepec de Aldama",
+    "v": 0,
+    "a": 3,
+    "r": 8,
+    "ndR": 6
+  },
+  {
+    "Municipio": "Tlahuelilpan",
+    "v": 0,
+    "a": 5,
+    "r": 6,
+    "ndR": 6
+  }
+]
+</script>
+    <script>
+       
+       const ctx = document.getElementById('myChart').getContext('2d');
+    const labels = data.map(item => item.Municipio);
+    const vData = data.map(item => item.v);
+    const aData = data.map(item => item.a);
+    const rData = data.map(item => item.r);
+    const ndrData = data.map(item => item.ndR);
+    const ndData = data.map(item => item.nd);
+    const nmData = data.map(item => item.nm);
+
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Óptimo',
+                    data: vData,
+                    backgroundColor: 'green',
+                    borderColor: 'green',
+                    borderWidth: 1
+                },
+                {
+                    label: 'En proceso',
+                    data: aData,
+                    backgroundColor: '#f39f18',
+                    borderColor: 'yellow',
+                    borderWidth: 1
+                },
+                {
+                    label: 'En Rezago',
+                    data: rData,
+                    backgroundColor: 'red',
+                    borderColor: 'red',
+                    borderWidth: 1
+                },
+                {
+                label: 'Rezago por no presentar información',
+                    data: ndrData,
+                    backgroundColor: '#691c32',
+                    borderColor: 'red',
+                    borderWidth: 1
+                },
+                
+            ]
+        },
+        options: {
+            aspectRatio: 0.6,
+            indexAxis: 'y',
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+    </script>
+
+</body>
+</html>
