@@ -94,22 +94,70 @@ height: 100%;
 width: 100vw;
 font-family: 'Montserrat', sans-serif;
 }   
+/* Define los estilos base para el contenedor de información */
 .info {
-padding: 6px 8px;
-padding-right: 30px;
-font: 14px/16px Arial, Helvetica, sans-serif;
-background: white;
-background: rgba(105,28,50,0.8);
-color:#DDc9A3;
-box-shadow: 0 0 15px rgba(0,0,0,0.2);
-border-radius: 5px;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: black;
+    font-family: 'Arial', sans-serif;
 }
+
+/* Define una clase para los títulos */
 .info h4 {
-font: 14px/16px Arial, Helvetica, sans-serif;
-margin: 0 0 5px;
-color: white;
-font-weight: bold;
+    margin: 0 0 5px;
+    color: black;
+    font-size: 18px;
 }
+
+/* Define una clase para los nombres de las localidades */
+.locality-name {
+    color: #9f2241;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+/* Estilos para la lista y elementos de lista */
+.info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.info li {
+    font-size: 14px;
+    padding: 2px 0;
+}
+
+/* Clases para los círculos de colores */
+.circle {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.green-circle {
+    background-color: green;
+}
+
+.yellow-circle {
+    background-color: yellow;
+}
+
+.red-circle {
+    background-color: red;
+}
+
+/* Ajustar la imagen */
+.info img {
+    width: 30px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
 .info h5 {
 font: 24px/26px Arial, Helvetica, sans-serif;
 margin: 0 0 15px;
